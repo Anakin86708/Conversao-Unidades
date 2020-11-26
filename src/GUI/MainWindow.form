@@ -82,10 +82,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <Component id="panelContainer" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-          </Group>
+          <Component id="panelContainer" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -133,7 +130,6 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="70" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -232,7 +228,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="textFieldInsertNumber" alignment="1" pref="255" max="32767" attributes="0"/>
+                  <Component id="textFieldInsertNumber" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -245,7 +241,7 @@
             <Component class="javax.swing.JTextField" name="textFieldInsertNumber">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Insert the number"/>
+                <Property name="toolTipText" type="java.lang.String" value="Insert the number"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldInsertNumberActionPerformed"/>
@@ -263,7 +259,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="textFieldConvertedNumber" alignment="1" pref="257" max="32767" attributes="0"/>
+                  <Component id="textFieldConvertedNumber" alignment="1" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -277,7 +273,7 @@
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Converted Number"/>
+                <Property name="toolTipText" type="java.lang.String" value="Converted Number"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textFieldConvertedNumberActionPerformed"/>
@@ -371,12 +367,12 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelHeader1" alignment="0" max="32767" attributes="0"/>
+                  <Component id="labelHeader1" alignment="0" pref="518" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelHeader1" alignment="1" pref="57" max="32767" attributes="0"/>
+                  <Component id="labelHeader1" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

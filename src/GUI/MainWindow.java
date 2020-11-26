@@ -5,17 +5,28 @@
  */
 package GUI;
 
+import Codes.Controller;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author enzoj
  */
 public class MainWindow extends javax.swing.JFrame {
+    
+    private Controller controller;
+    private String pathToFolderString;
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
+        
+        this.pathToFolderString = "C:\\Users\\silva\\OneDrive - Universidade Estadual de Campinas\\2020.2\\SI400\\Projeto2-POO\\Projeto2\\src\\Converts";
+        this.controller = new Controller(pathToFolderString);
+        DefaultComboBoxModel model = this.controller.generateComboBoxModel();
+        this.comboBoxInput.setModel(model);
     }
 
     /**
@@ -107,7 +118,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelInsertNumber.setBackground(new java.awt.Color(0, 0, 255));
 
         textFieldInsertNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textFieldInsertNumber.setText("Insert the number");
+        textFieldInsertNumber.setToolTipText("Insert the number");
         textFieldInsertNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldInsertNumberActionPerformed(evt);
@@ -118,7 +129,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelInsertNumber.setLayout(panelInsertNumberLayout);
         panelInsertNumberLayout.setHorizontalGroup(
             panelInsertNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(textFieldInsertNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+            .addComponent(textFieldInsertNumber, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         panelInsertNumberLayout.setVerticalGroup(
             panelInsertNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +140,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         textFieldConvertedNumber.setEditable(false);
         textFieldConvertedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        textFieldConvertedNumber.setText("Converted Number");
+        textFieldConvertedNumber.setToolTipText("Converted Number");
         textFieldConvertedNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFieldConvertedNumberActionPerformed(evt);
@@ -140,7 +151,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelConvertedNumber.setLayout(panelConvertedNumberLayout);
         panelConvertedNumberLayout.setHorizontalGroup(
             panelConvertedNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(textFieldConvertedNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+            .addComponent(textFieldConvertedNumber, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         panelConvertedNumberLayout.setVerticalGroup(
             panelConvertedNumberLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,11 +203,11 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+            .addComponent(labelHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
@@ -233,8 +244,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(panelUserOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelUserOption2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         mFile.setText("File");
@@ -281,9 +291,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -341,12 +349,7 @@ public class MainWindow extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
-            }
-        });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
