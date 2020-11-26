@@ -10,6 +10,11 @@ package Converts;
  * @author silva
  */
 public interface InterfaceConverter {
-    @Override
-    public String toString();
+
+    String getCategory();
+    
+    public double toBase(double input);
+    
+    public double convert(double input);
+    
 }
