@@ -19,7 +19,5 @@ public class Main {
                 new MainWindow().setVisible(true);
             }
         });
-        LoaderConverter lc = new LoaderConverter("D:\\Users\\Ariel\\OneDrive - Etec Centro Paula Souza\\Documentos\\NetBeansProjects\\FactoryTest\\src\\resources");
-        lc.loader();
     }
 }

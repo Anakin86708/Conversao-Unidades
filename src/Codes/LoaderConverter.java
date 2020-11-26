@@ -11,7 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import resources.InterfaceConverter;
+import Converts.InterfaceConverter;
+import java.util.List;
 
 /**
  *
@@ -20,15 +21,14 @@ import resources.InterfaceConverter;
 public class LoaderConverter {
 
     private String pathToFolderString;
-    private ArrayList<InterfaceConverter> loadedObject = new ArrayList<>();
+    private List<InterfaceConverter> loadedObject = new ArrayList<>();
 
     public LoaderConverter(String pathToFolderString) {
         this.pathToFolderString = pathToFolderString;
     }
 
     public InterfaceConverter[] getLoadedObject() {
-        InterfaceConverter[] array = new InterfaceConverter[loadedObject.size()];
-        return (InterfaceConverter[]) loadedObject.toArray(array);
+        return loadedObject.toArray(new InterfaceConverter[0]);
     }
 
     /**
@@ -36,29 +36,19 @@ public class LoaderConverter {
      * e carregar no arrayList todos os Objects.
      */
     public void loader() {
-        String packageString = "resources";
+        String packageString = "Converts";
         File[] filesFromFolder = getFilesFromFolder();
         for (File classFile : filesFromFolder) {
             try {
-                String classString = classFile.getName().replace(".java", "");
+                String classString = classFile.getName().replace(".java", "");                
                 Object o = Class.forName(packageString + "." + classString).getConstructor().newInstance();
                 InterfaceConverter converter = (InterfaceConverter) o;
                 addToLoaded(converter);
                 
-            } catch (ClassNotFoundException ex) {
+            } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NoSuchMethodException ex) {
                 // Método não foi encontrado pois representa uma interface
-            } catch (SecurityException ex) {
-                Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InstantiationException ex) {
-                Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalAccessException ex) {
-                Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IllegalArgumentException ex) {
-                Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (InvocationTargetException ex) {
-                Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

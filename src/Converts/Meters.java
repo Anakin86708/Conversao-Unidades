@@ -11,7 +11,7 @@ package Converts;
  */
 public class Meters implements InterfaceConverter{
     
-    private String category;
+    private final String category;
 
     public Meters() {
         this.category = "lenght";
@@ -31,11 +31,11 @@ public class Meters implements InterfaceConverter{
 
     @Override
     public double toBase(double input) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input;
     }
 
     @Override
     public double convert(double input) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input;
     }
 }

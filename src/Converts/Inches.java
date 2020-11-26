@@ -10,7 +10,8 @@ package Converts;
  * @author silva
  */
 public class Inches implements InterfaceConverter{
-    private String categoty;
+    
+    private final String categoty;
 
     public Inches() {
         this.categoty = "lenght";

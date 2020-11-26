@@ -6,7 +6,10 @@
 package GUI;
 
 import Codes.Controller;
+import Converts.InterfaceConverter;
+import java.awt.HeadlessException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +19,9 @@ public class MainWindow extends javax.swing.JFrame {
     
     private Controller controller;
     private String pathToFolderString;
+    private InterfaceConverter inputConverter;
+    private InterfaceConverter expectedConverter;
+    private String categoryString;
 
     /**
      * Creates new form MainWindow
@@ -25,8 +31,33 @@ public class MainWindow extends javax.swing.JFrame {
         
         this.pathToFolderString = "C:\\Users\\silva\\OneDrive - Universidade Estadual de Campinas\\2020.2\\SI400\\Projeto2-POO\\Projeto2\\src\\Converts";
         this.controller = new Controller(pathToFolderString);
-        DefaultComboBoxModel model = this.controller.generateComboBoxModel();
-        this.comboBoxInput.setModel(model);
+        
+        // Cria o modelo com as classes carregadas
+        updateComboBoxInputModel(this.controller.generateComboBoxModel());
+        
+        changeComboBoxExpectedModel();
+    }
+    
+    private InterfaceConverter getInputConverter() {
+        setInputConverter();
+        return this.inputConverter;
+    }
+    
+    private void setInputConverter() {
+        Object obj = comboBoxInput.getSelectedItem();
+        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        this.inputConverter = interfaceConverter;
+    }
+    
+    private InterfaceConverter getExpectedConverter() {
+        setExpectedConverter();
+        return this.expectedConverter;
+    }
+    
+    private void setExpectedConverter() {
+        Object obj = comboBoxExpected.getSelectedItem();
+        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        this.expectedConverter = interfaceConverter;
     }
 
     /**
@@ -119,9 +150,9 @@ public class MainWindow extends javax.swing.JFrame {
 
         textFieldInsertNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldInsertNumber.setToolTipText("Insert the number");
-        textFieldInsertNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldInsertNumberActionPerformed(evt);
+        textFieldInsertNumber.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                inputUpdate(evt);
             }
         });
 
@@ -141,11 +172,6 @@ public class MainWindow extends javax.swing.JFrame {
         textFieldConvertedNumber.setEditable(false);
         textFieldConvertedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldConvertedNumber.setToolTipText("Converted Number");
-        textFieldConvertedNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textFieldConvertedNumberActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout panelConvertedNumberLayout = new javax.swing.GroupLayout(panelConvertedNumber);
         panelConvertedNumber.setLayout(panelConvertedNumberLayout);
@@ -159,9 +185,9 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         comboBoxInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mili", "Centi", "Deci", "Base", "Deca", "Hecto", "Kilo" }));
-        comboBoxInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxInputActionPerformed(evt);
+        comboBoxInput.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxInputItemStateChanged(evt);
             }
         });
 
@@ -177,9 +203,9 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         comboBoxExpected.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mili", "Centi", "Deci", "Base", "Deca", "Hecto", "Kilo" }));
-        comboBoxExpected.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxExpectedActionPerformed(evt);
+        comboBoxExpected.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxExpectedItemStateChanged(evt);
             }
         });
 
@@ -305,23 +331,67 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mItemExitActionPerformed
+    
+    /**
+     * Altera o modelo da ComboBox de output de acordo com a categoria da unidade selecionada
+     * @param evt 
+     */
+    private void comboBoxInputItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxInputItemStateChanged
+        // Alterar apenas quando a categoria for diferente
+        String currentCategory = getInputConverter().getCategory();
+        if (!currentCategory.equals(this.categoryString)) {
+            changeComboBoxExpectedModel();
+        }
+        convertAndShow();
+    }//GEN-LAST:event_comboBoxInputItemStateChanged
 
-    private void textFieldInsertNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldInsertNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldInsertNumberActionPerformed
+    private void inputUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inputUpdate
+        convertAndShow();
+    }//GEN-LAST:event_inputUpdate
 
-    private void textFieldConvertedNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFieldConvertedNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textFieldConvertedNumberActionPerformed
+    private void comboBoxExpectedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxExpectedItemStateChanged
+        convertAndShow();
+    }//GEN-LAST:event_comboBoxExpectedItemStateChanged
 
-    private void comboBoxInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxInputActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxInputActionPerformed
+    private void convertAndShow() throws HeadlessException {
+        String inputString = this.textFieldInsertNumber.getText();
+        try {
+            double input = Double.valueOf(inputString);
+            setConverted(controller.convert(input, this.getInputConverter(), this.getExpectedConverter()));
+        } catch (NumberFormatException e) {
+            String message = "Invalid value!\n"+e.getMessage();
+            String titleString = "Error";
+            JOptionPane.showMessageDialog(this, message, titleString, JOptionPane.WARNING_MESSAGE);
+        }
+    }
 
-    private void comboBoxExpectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxExpectedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxExpectedActionPerformed
+    private void setConverted(Double value) {
+        this.textFieldConvertedNumber.setText(value.toString());
+    }
+    
+    private void changeComboBoxExpectedModel() {
+        InterfaceConverter interfaceConverter = getInputConverter();
+        String actualCategory = interfaceConverter.getCategory();
+        
+        DefaultComboBoxModel outputModel = this.controller.generateCobBoxModel(actualCategory);
+        comboBoxExpected.setModel(outputModel);
+        
+        changeUnit(actualCategory);
+    }
 
+    private void changeUnit(String unit) {
+        this.categoryString = unit;
+        labelHeader.setText("Unit: " + unit);
+    }
+    
+    /**
+     * Atualiza a lista de unidades que podem ser selecionadas pelo usuário
+     * @param model Modelo a ser aplicado a combobox de entrada
+     */
+    public void updateComboBoxInputModel(DefaultComboBoxModel model) {
+        this.comboBoxInput.setModel(model);
+    }
+    
     /**
      * @param args the command line arguments
      */
