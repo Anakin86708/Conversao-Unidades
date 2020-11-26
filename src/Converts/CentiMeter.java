@@ -7,19 +7,18 @@ package Converts;
 
 /**
  *
- * @author silva
+ * @author Guiskater
  */
-public class Meters implements InterfaceConverter{
-    
+public class CentiMeter implements InterfaceConverter {
     private final String category;
-
-    public Meters() {
+    
+    public CentiMeter() {
         this.category = "lenght";
     }
     
     @Override
     public String toString() {
-        return "Meters (m)";
+        return "Centimeters (cm)";
     }
 
     @Override
@@ -29,11 +28,11 @@ public class Meters implements InterfaceConverter{
 
     @Override
     public double toBase(double input) {
-        return input;
+        return input * 0.01;
     }
 
     @Override
     public double convert(double input) {
-        return input;
+        return input * 100;
     }
 }

@@ -7,19 +7,18 @@ package Converts;
 
 /**
  *
- * @author silva
+ * @author Guiskater
  */
-public class Meters implements InterfaceConverter{
-    
+public class DeciGram implements InterfaceConverter {
     private final String category;
-
-    public Meters() {
-        this.category = "lenght";
+    
+    public DeciGram() {
+        this.category = "mass";
     }
     
     @Override
     public String toString() {
-        return "Meters (m)";
+        return "Decigram (dg)";
     }
 
     @Override
@@ -29,11 +28,12 @@ public class Meters implements InterfaceConverter{
 
     @Override
     public double toBase(double input) {
-        return input;
+        return input * 0.1;
     }
 
     @Override
     public double convert(double input) {
-        return input;
+        return input * 10;
     }
+    
 }

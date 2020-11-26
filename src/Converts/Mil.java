@@ -7,33 +7,31 @@ package Converts;
 
 /**
  *
- * @author silva
+ * @author Guilherme
  */
-public class Meters implements InterfaceConverter{
-    
+public class Mil implements InterfaceConverter{
     private final String category;
-
-    public Meters() {
-        this.category = "lenght";
+    
+    public Mil() {
+        this.category  = "lenght";
     }
     
     @Override
     public String toString() {
-        return "Meters (m)";
+        return "Mil (mil)";
     }
-
+    
     @Override
     public String getCategory() {
         return this.category;
     }
-
+    
     @Override
     public double toBase(double input) {
-        return input;
+        return input * 0.0000254;
     }
-
-    @Override
+    
     public double convert(double input) {
-        return input;
+        return input * 39370;
     }
 }

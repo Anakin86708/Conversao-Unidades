@@ -7,33 +7,31 @@ package Converts;
 
 /**
  *
- * @author silva
+ * @author Guiskater
  */
-public class Meters implements InterfaceConverter{
-    
+public class KiloMeter implements InterfaceConverter {
     private final String category;
-
-    public Meters() {
+    
+    public KiloMeter() {
         this.category = "lenght";
     }
     
     @Override
     public String toString() {
-        return "Meters (m)";
+        return "Kilometer (km)";
     }
-
+    
     @Override
     public String getCategory() {
         return this.category;
     }
-
+    
     @Override
     public double toBase(double input) {
-        return input;
+        return input * 1000;
     }
-
-    @Override
+    
     public double convert(double input) {
-        return input;
+        return input * 0.001;
     }
 }
