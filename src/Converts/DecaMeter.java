@@ -7,19 +7,18 @@ package Converts;
 
 /**
  *
- * @author silva
+ * @author Guiskater
  */
-public class Meters implements InterfaceConverter{
-    
+public class DecaMeter implements InterfaceConverter {
     private final String category;
-
-    public Meters() {
+    
+    public DecaMeter() {
         this.category = "lenght";
     }
     
     @Override
     public String toString() {
-        return "Meters (m)";
+        return "Decameters (dam)";
     }
 
     @Override
@@ -29,11 +28,11 @@ public class Meters implements InterfaceConverter{
 
     @Override
     public double toBase(double input) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input * 10;
     }
 
     @Override
     public double convert(double input) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input * 0.1;
     }
 }

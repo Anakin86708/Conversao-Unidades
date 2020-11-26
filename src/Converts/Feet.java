@@ -7,33 +7,31 @@ package Converts;
 
 /**
  *
- * @author silva
+ * @author Guiskater
  */
-public class Meters implements InterfaceConverter{
-    
+public class Feet implements InterfaceConverter {
     private final String category;
-
-    public Meters() {
+    
+    public Feet() {
         this.category = "lenght";
     }
     
     @Override
     public String toString() {
-        return "Meters (m)";
+        return "Feet (ft)";
     }
-
+    
     @Override
     public String getCategory() {
         return this.category;
     }
-
+    
     @Override
     public double toBase(double input) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input * 0.3048;
     }
-
-    @Override
+    
     public double convert(double input) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return input * 3.28084;
     }
 }
