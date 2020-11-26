@@ -13,7 +13,7 @@ public class DecaMeter implements InterfaceConverter {
     private final String category;
     
     public DecaMeter() {
-        this.category = "lenght";
+        this.category = "length";
     }
     
     @Override

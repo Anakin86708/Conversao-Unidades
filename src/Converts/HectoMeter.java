@@ -13,7 +13,7 @@ public class HectoMeter implements InterfaceConverter {
     private final String category;
     
     public HectoMeter() {
-        this.category = "lenght";
+        this.category = "length";
     }
     
     @Override

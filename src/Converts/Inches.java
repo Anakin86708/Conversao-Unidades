@@ -14,7 +14,7 @@ public class Inches implements InterfaceConverter{
     private final String categoty;
 
     public Inches() {
-        this.categoty = "lenght";
+        this.categoty = "length";
     }
 
     @Override

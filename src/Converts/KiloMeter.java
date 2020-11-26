@@ -13,7 +13,7 @@ public class KiloMeter implements InterfaceConverter {
     private final String category;
     
     public KiloMeter() {
-        this.category = "lenght";
+        this.category = "length";
     }
     
     @Override

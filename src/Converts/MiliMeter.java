@@ -13,7 +13,7 @@ public class MiliMeter implements InterfaceConverter {
     private final String category;
     
     public MiliMeter() {
-        this.category = "lenght";
+        this.category = "length";
     }
     
     @Override

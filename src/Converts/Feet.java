@@ -13,7 +13,7 @@ public class Feet implements InterfaceConverter {
     private final String category;
     
     public Feet() {
-        this.category = "lenght";
+        this.category = "length";
     }
     
     @Override

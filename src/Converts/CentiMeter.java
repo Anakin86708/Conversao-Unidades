@@ -13,7 +13,7 @@ public class CentiMeter implements InterfaceConverter {
     private final String category;
     
     public CentiMeter() {
-        this.category = "lenght";
+        this.category = "length";
     }
     
     @Override

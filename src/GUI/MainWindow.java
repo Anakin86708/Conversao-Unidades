@@ -149,6 +149,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelInsertNumber.setBackground(new java.awt.Color(0, 0, 255));
 
         textFieldInsertNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldInsertNumber.setText("0.0");
         textFieldInsertNumber.setToolTipText("Insert the number");
         textFieldInsertNumber.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
@@ -171,6 +172,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         textFieldConvertedNumber.setEditable(false);
         textFieldConvertedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        textFieldConvertedNumber.setText("0.0");
         textFieldConvertedNumber.setToolTipText("Converted Number");
 
         javax.swing.GroupLayout panelConvertedNumberLayout = new javax.swing.GroupLayout(panelConvertedNumber);
@@ -359,9 +361,14 @@ public class MainWindow extends javax.swing.JFrame {
             double input = Double.valueOf(inputString);
             setConverted(controller.convert(input, this.getInputConverter(), this.getExpectedConverter()));
         } catch (NumberFormatException e) {
+            if (!inputString.isEmpty()) {
             String message = "Invalid value!\n"+e.getMessage();
             String titleString = "Error";
             JOptionPane.showMessageDialog(this, message, titleString, JOptionPane.WARNING_MESSAGE);
+            } else {
+                // Valor é vazio
+                setConverted(0.0);
+            }
         }
     }
 

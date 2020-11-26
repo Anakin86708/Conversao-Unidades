@@ -14,7 +14,7 @@ public class Meters implements InterfaceConverter{
     private final String category;
 
     public Meters() {
-        this.category = "lenght";
+        this.category = "length";
     }
     
     @Override

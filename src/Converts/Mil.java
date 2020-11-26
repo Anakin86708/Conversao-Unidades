@@ -13,7 +13,7 @@ public class Mil implements InterfaceConverter{
     private final String category;
     
     public Mil() {
-        this.category  = "lenght";
+        this.category  = "length";
     }
     
     @Override
