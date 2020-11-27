@@ -30,8 +30,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         
         String localDir = System.getProperty("user.dir");
-        this.pathToFolderString = localDir+ "\\src\\Converts";
-        System.out.println("Folder: " + this.pathToFolderString);
+        this.pathToFolderString = localDir + "\\src\\Converts";
         this.controller = new Controller(pathToFolderString);
         
         // Cria o modelo com as classes carregadas
