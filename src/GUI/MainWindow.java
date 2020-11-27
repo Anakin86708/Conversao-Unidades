@@ -29,7 +29,9 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         initComponents();
         
-        this.pathToFolderString = "C:\\Users\\silva\\OneDrive - Universidade Estadual de Campinas\\2020.2\\SI400\\Projeto2-POO\\Projeto2\\src\\Converts";
+        String localDir = System.getProperty("user.dir");
+        this.pathToFolderString = localDir+ "\\src\\Converts";
+        System.out.println("Folder: " + this.pathToFolderString);
         this.controller = new Controller(pathToFolderString);
         
         // Cria o modelo com as classes carregadas
