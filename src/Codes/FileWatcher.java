@@ -41,7 +41,8 @@ public class FileWatcher implements Runnable {
             WatchService watcher = FileSystems.getDefault().newWatchService();
             watchKey = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
 
-            if (keepRunning){
+            // Apenas continua quando for registrado um dos eventos acima
+            if (keepRunning) {
                 WatchKey key = watcher.take();
                 this.updateClasses();
             }
@@ -51,7 +52,7 @@ public class FileWatcher implements Runnable {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void updateClasses() {
         this.asssociatedController.updateAllComboBox();
     }
@@ -67,7 +68,7 @@ public class FileWatcher implements Runnable {
         System.out.println("Reloaded path to classes");
         watchKey.cancel();
     }
-    
+
     public void safeStop() {
         this.keepRunning = false;
         reload();

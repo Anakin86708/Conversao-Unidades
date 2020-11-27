@@ -8,7 +8,6 @@ package GUI;
 import Codes.Controller;
 import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -32,7 +31,7 @@ public class MainWindow extends javax.swing.JFrame {
         String localDir = System.getProperty("user.dir");
         String pathToFolderString = localDir + "\\src\\Converts";
         this.controller = new Controller(this, pathToFolderString);
-        
+
         // Cria o modelo com as classes carregadas
         controller.updateAllComboBox();
     }
@@ -58,14 +57,14 @@ public class MainWindow extends javax.swing.JFrame {
         InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
         this.expectedConverter = interfaceConverter;
     }
-
+    
     public JComboBox<String> getComboBoxInput() {
         return comboBoxInput;
     }
-
+    
     public JComboBox<String> getComboBoxExpected() {
         return comboBoxExpected;
-    }    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -340,10 +339,12 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_mItemExitActionPerformed
-    
+
     /**
-     * Altera o modelo da ComboBox de output de acordo com a categoria da unidade selecionada
-     * @param evt 
+     * Altera o modelo da ComboBox de output de acordo com a categoria da
+     * unidade selecionada
+     *
+     * @param evt
      */
     private void comboBoxInputItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxInputItemStateChanged
         // Alterar apenas quando a categoria for diferente
@@ -361,7 +362,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void comboBoxExpectedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxExpectedItemStateChanged
         convertAndShow();
     }//GEN-LAST:event_comboBoxExpectedItemStateChanged
-
+    
     private void convertAndShow() throws HeadlessException {
         String inputString = this.textFieldInsertNumber.getText();
         try {
@@ -369,21 +370,20 @@ public class MainWindow extends javax.swing.JFrame {
             setConverted(controller.convert(input, this.getInputConverter(), this.getExpectedConverter()));
         } catch (NumberFormatException e) {
             if (!inputString.isEmpty()) {
-            String message = "Invalid value!\n"+e.getMessage();
-            String titleString = "Error";
-            JOptionPane.showMessageDialog(this, message, titleString, JOptionPane.WARNING_MESSAGE);
+                String message = "Invalid value!\n" + e.getMessage();
+                String titleString = "Error";
+                JOptionPane.showMessageDialog(this, message, titleString, JOptionPane.WARNING_MESSAGE);
             } else {
                 // Valor é vazio
                 setConverted(0.0);
             }
         }
     }
-
+    
     private void setConverted(Double value) {
         this.textFieldConvertedNumber.setText(value.toString());
     }
     
-
     public void changeUnit(String unit) {
         this.categoryString = unit;
         labelHeader.setText("Unit: " + unit);
@@ -393,8 +393,7 @@ public class MainWindow extends javax.swing.JFrame {
         int count = this.comboBoxInput.getItemCount();
         this.labelCounterClasses.setText("Number of avaliable classes: " + count);
     }
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -422,7 +421,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
