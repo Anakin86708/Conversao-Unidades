@@ -8,6 +8,9 @@ package GUI;
 import Codes.Controller;
 import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -375,9 +378,33 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void setConverted(Double value) {
-        this.textFieldConvertedNumber.setText(value.toString());
+        long roundedNumber = Math.round(value);
+        
+        if(countDecimalPlaces(value) > 7){ /* comparação pra ver se precisa de notação cientifica ou n */
+//            DecimalFormat df = new DecimalFormat("0.0000E0");
+            DecimalFormat df = new DecimalFormat("0.0E0");
+            this.textFieldConvertedNumber.setText(df.format(value));
+        }
+        else{
+//            DecimalFormat df = new DecimalFormat("0.0000000");
+
+//            this.textFieldConvertedNumber.setText(df.format(value));
+              this.textFieldConvertedNumber.setText(value.toString());
+        }    
     }
     
+    private int countDecimalPlaces(Double value){
+        DecimalFormatSymbols decimalSeparator = new DecimalFormatSymbols();
+        
+        String valueString = Double.toString(Math.abs(value));
+//        int indexDotPlace = valueString.indexOf(decimalSeparator.getDecimalSeparator());
+        int indexDotPlace = valueString.indexOf('.');
+        int numberOfDecimals = valueString.length() - indexDotPlace - 1;
+        
+        return numberOfDecimals;
+    }
+    
+
     private void changeComboBoxExpectedModel() {
         InterfaceConverter interfaceConverter = getInputConverter();
         String actualCategory = interfaceConverter.getCategory();
