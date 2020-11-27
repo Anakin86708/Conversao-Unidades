@@ -9,6 +9,7 @@ import Codes.Controller;
 import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +19,6 @@ import javax.swing.JOptionPane;
 public class MainWindow extends javax.swing.JFrame {
     
     private Controller controller;
-    private String pathToFolderString;
     private InterfaceConverter inputConverter;
     private InterfaceConverter expectedConverter;
     private String categoryString;
@@ -30,16 +30,14 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         
         String localDir = System.getProperty("user.dir");
-        this.pathToFolderString = localDir + "\\src\\Converts";
-        this.controller = new Controller(pathToFolderString);
+        String pathToFolderString = localDir + "\\src\\Converts";
+        this.controller = new Controller(this, pathToFolderString);
         
         // Cria o modelo com as classes carregadas
-        updateComboBoxInputModel(this.controller.generateComboBoxModel());
-        
-        changeComboBoxExpectedModel();
+        controller.updateAllComboBox();
     }
     
-    private InterfaceConverter getInputConverter() {
+    public InterfaceConverter getInputConverter() {
         setInputConverter();
         return this.inputConverter;
     }
@@ -60,6 +58,14 @@ public class MainWindow extends javax.swing.JFrame {
         InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
         this.expectedConverter = interfaceConverter;
     }
+
+    public JComboBox<String> getComboBoxInput() {
+        return comboBoxInput;
+    }
+
+    public JComboBox<String> getComboBoxExpected() {
+        return comboBoxExpected;
+    }    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -86,7 +92,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelUserOption2 = new javax.swing.JPanel();
         comboBoxExpected = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
-        labelHeader1 = new javax.swing.JLabel();
+        labelCounterClasses = new javax.swing.JLabel();
         mBar = new javax.swing.JMenuBar();
         mFile = new javax.swing.JMenu();
         mItemExit = new javax.swing.JMenuItem();
@@ -225,18 +231,18 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
-        labelHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelHeader1.setText("Gaveta Produções");
+        labelCounterClasses.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCounterClasses.setText("Gaveta Produções");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+            .addComponent(labelCounterClasses, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelCounterClasses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
@@ -343,7 +349,7 @@ public class MainWindow extends javax.swing.JFrame {
         // Alterar apenas quando a categoria for diferente
         String currentCategory = getInputConverter().getCategory();
         if (!currentCategory.equals(this.categoryString)) {
-            changeComboBoxExpectedModel();
+            controller.updateComboBoxExpectedModel();
         }
         convertAndShow();
     }//GEN-LAST:event_comboBoxInputItemStateChanged
@@ -377,28 +383,17 @@ public class MainWindow extends javax.swing.JFrame {
         this.textFieldConvertedNumber.setText(value.toString());
     }
     
-    private void changeComboBoxExpectedModel() {
-        InterfaceConverter interfaceConverter = getInputConverter();
-        String actualCategory = interfaceConverter.getCategory();
-        
-        DefaultComboBoxModel outputModel = this.controller.generateCobBoxModel(actualCategory);
-        comboBoxExpected.setModel(outputModel);
-        
-        changeUnit(actualCategory);
-    }
 
-    private void changeUnit(String unit) {
+    public void changeUnit(String unit) {
         this.categoryString = unit;
         labelHeader.setText("Unit: " + unit);
     }
     
-    /**
-     * Atualiza a lista de unidades que podem ser selecionadas pelo usuário
-     * @param model Modelo a ser aplicado a combobox de entrada
-     */
-    public void updateComboBoxInputModel(DefaultComboBoxModel model) {
-        this.comboBoxInput.setModel(model);
+    public void changeClassesCounter() {
+        int count = this.comboBoxInput.getItemCount();
+        this.labelCounterClasses.setText("Number of avaliable classes: " + count);
     }
+    
     
     /**
      * @param args the command line arguments
@@ -435,8 +430,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxInput;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelConvert;
+    private javax.swing.JLabel labelCounterClasses;
     private javax.swing.JLabel labelHeader;
-    private javax.swing.JLabel labelHeader1;
     private javax.swing.JLabel labelTo;
     private javax.swing.JMenuBar mBar;
     private javax.swing.JMenu mEdit;

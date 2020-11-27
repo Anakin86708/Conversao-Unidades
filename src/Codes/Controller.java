@@ -9,6 +9,7 @@ import Converts.InterfaceConverter;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import Converts.InterfaceConverter;
+import GUI.MainWindow;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
@@ -28,17 +29,21 @@ import java.util.logging.Logger;
  */
 public class Controller {
     
+    private MainWindow mainWindow;
     private Thread watcherThread;
+    private FileWatcher watcher;
     private LoaderConverter loaderConverter;
     private List<InterfaceConverter> filtredList;
-    private String pathToFolderString;
+    private static String pathToFolderString;  // Deve ser o único local contendo a string
     
-    public Controller(String pathToFolderString) {
-        this.pathToFolderString = pathToFolderString;
-        this.loaderConverter = new LoaderConverter(pathToFolderString);
+    public Controller(MainWindow mainWindow, String pathToFolderString) {
+        this.mainWindow = mainWindow;
+        
+        Controller.pathToFolderString = pathToFolderString;
+        this.loaderConverter = new LoaderConverter();
         
         // Monitora pelo sistema de arquivos em outra thread
-        FileWatcher watcher = FileWatcher.getInstance(pathToFolderString);
+        this.watcher = new FileWatcher(this);
         this.watcherThread = new Thread(watcher);
         this.watcherThread.start();
         this.loaderConverter.loader();
@@ -47,6 +52,18 @@ public class Controller {
     public List<InterfaceConverter> getFiltredList() {
         return filtredList;
     }
+
+    public static String getPathToFolderString() {
+        return Controller.pathToFolderString;
+    }
+
+    public void setPathToFolderString(String pathToFolderString) {
+        // Permite alteração da pasta, mas necessita alterar o watcher também
+        Controller.pathToFolderString = pathToFolderString;
+        this.watcher.reload();
+    }
+    
+    
     
     public DefaultComboBoxModel generateComboBoxModel() {
         Object[] items = loaderConverter.getLoadedObject();
@@ -67,5 +84,36 @@ public class Controller {
     
     public Double convert(double value, InterfaceConverter inputConverter, InterfaceConverter expectedConverter) {
         return expectedConverter.convert(inputConverter.toBase(value));
+    }
+    
+    @Override
+    protected void finalize() {
+        this.watcher.safeStop();
+        try {
+            this.watcherThread.join();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateAllComboBox() {
+        this.updateComboBoxInputModel();
+        this.updateComboBoxExpectedModel();
+    }
+
+    /**
+     * Atualiza a lista de unidades que podem ser selecionadas pelo usuário
+     */
+    public void updateComboBoxInputModel() {
+        this.mainWindow.getComboBoxInput().setModel(this.generateComboBoxModel());
+    }
+
+    public void updateComboBoxExpectedModel() {
+        InterfaceConverter interfaceConverter = mainWindow.getInputConverter();
+        String actualCategory = interfaceConverter.getCategory();
+        DefaultComboBoxModel outputModel = this.generateCobBoxModel(actualCategory);
+        mainWindow.getComboBoxExpected().setModel(outputModel);
+        mainWindow.changeUnit(actualCategory);
+        mainWindow.changeClassesCounter();
     }
 }

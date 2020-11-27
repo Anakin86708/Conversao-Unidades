@@ -18,50 +18,58 @@ import java.util.logging.Logger;
 
 /**
  * Singleton
+ *
  * @author silva
  */
-public class FileWatcher implements Runnable{
-    private static FileWatcher instance;
-    private String pathToFolderString;
-    
-    public static synchronized FileWatcher getInstance(String pathToFolderString) {
-        if (instance == null) {
-            // Realiza chamada do construtor
-            instance = new FileWatcher(pathToFolderString);
-        }
-        // Retorna a instância, nova se ainda não existir, ou a mesma, caso já tenha sido criada
-        return instance;
-    }
-    
-    private FileWatcher(String pathToFolderString) {
-        this.pathToFolderString = pathToFolderString;
+public class FileWatcher implements Runnable {
+
+    private volatile Boolean keepRunning;
+    private WatchKey watchKey;
+    private final Controller asssociatedController;
+
+    public FileWatcher(Controller associatedController) {
+        this.keepRunning = true;
+        this.asssociatedController = associatedController;
     }
 
-    public void setPathToFolderString(String pathToFolderString) {
-        this.pathToFolderString = pathToFolderString;
-    }
-    
     /**
      * Monitora o diretório em busca de alterações nas classes
      */
     private void watcherClassChanges() {
         try {
-            Path path = FileSystems.getDefault().getPath(this.pathToFolderString);
+            Path path = FileSystems.getDefault().getPath(Controller.getPathToFolderString());
             WatchService watcher = FileSystems.getDefault().newWatchService();
-            WatchKey watchKey = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-            
-            WatchKey key = watcher.take();
-            System.out.println("Caiu aqui!");
+            watchKey = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+
+            if (keepRunning){
+                WatchKey key = watcher.take();
+                this.updateClasses();
+            }
         } catch (IOException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
             Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    private void updateClasses() {
+        this.asssociatedController.updateAllComboBox();
+    }
 
     @Override
     public void run() {
-        this.watcherClassChanges();
+        while (this.keepRunning) {
+            this.watcherClassChanges();
+        }
+    }
+
+    public void reload() {
+        System.out.println("Reloaded path to classes");
+        watchKey.cancel();
     }
     
+    public void safeStop() {
+        this.keepRunning = false;
+        reload();
+    }
 }

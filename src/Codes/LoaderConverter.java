@@ -20,14 +20,14 @@ import java.util.List;
  */
 public class LoaderConverter {
 
-    private String pathToFolderString;
-    private List<InterfaceConverter> loadedObject = new ArrayList<>();
+    private List<InterfaceConverter> loadedObject;
 
-    public LoaderConverter(String pathToFolderString) {
-        this.pathToFolderString = pathToFolderString;
+    public LoaderConverter() {
+
     }
 
     public InterfaceConverter[] getLoadedObject() {
+        this.loader();
         return loadedObject.toArray(new InterfaceConverter[0]);
     }
 
@@ -36,6 +36,7 @@ public class LoaderConverter {
      * e carregar no arrayList todos os Objects.
      */
     public void loader() {
+        this.loadedObject = new ArrayList<>();
         String packageString = "Converts";
         File[] filesFromFolder = getFilesFromFolder();
         for (File classFile : filesFromFolder) {
@@ -74,7 +75,7 @@ public class LoaderConverter {
      * @return Array de arquivos de classes a serem carregados.
      */
     private File[] getFilesFromFolder() {
-        File folder = new File(this.pathToFolderString);
+        File folder = new File(Controller.getPathToFolderString());
         FilenameFilter filterName = generateFilenameFilter(".java");
         return folder.listFiles(filterName);
     }
