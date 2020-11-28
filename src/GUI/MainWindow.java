@@ -378,19 +378,31 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void setConverted(Double value) {
-        long roundedNumber = Math.round(value);
+        double doubleValue = value;
         
-        if(countDecimalPlaces(value) > 7){ /* comparação pra ver se precisa de notação cientifica ou n */
-//            DecimalFormat df = new DecimalFormat("0.0000E0");
-            DecimalFormat df = new DecimalFormat("0.0E0");
+        // Para 10^7
+        // Transformação para int do value e consegue a quantidade de numeros antes do "."
+        int intValue = (int)doubleValue;
+        int tamanhoValue = String.valueOf(intValue).length();
+        
+        // Para 10^-7
+        // Transformação para String do value e consegue a quantidade de numeros depois do "."
+        String StringNumPequeno = String.valueOf(value);
+        int indexPequeno = StringNumPequeno.indexOf(".");
+        int tamanhoDecimal = StringNumPequeno.substring(indexPequeno + 1).length();
+        
+        // Arredondamento do value
+        long NumeroArredondado = Math.round(value);
+        
+        // Verifica se o value é 10^7 ou 10^-7 
+        if(tamanhoValue > 7 || tamanhoDecimal > 7) {
+            DecimalFormat df = new DecimalFormat("0.#E0");
             this.textFieldConvertedNumber.setText(df.format(value));
         }
-        else{
-//            DecimalFormat df = new DecimalFormat("0.0000000");
-
-//            this.textFieldConvertedNumber.setText(df.format(value));
-              this.textFieldConvertedNumber.setText(value.toString());
-        }    
+        else {
+            //this.textFieldConvertedNumber.setText(Long.toString(NumeroArredondado));
+            this.textFieldConvertedNumber.setText(Double.toString(doubleValue));
+        }
     }
     
     private int countDecimalPlaces(Double value){
