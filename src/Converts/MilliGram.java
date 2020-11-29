@@ -7,22 +7,21 @@ package Converts;
 
 /**
  *
- * @author enzoj
+ * @author Guiskater
  */
-// Transformation to Cubic Meters
-public class CubicMeters extends AbstractConverter {
+public class MilliGram extends AbstractConverter {
 
-    public CubicMeters() {
-        super("Volume", "M3");
+    public MilliGram() {
+        super("Mass", "MG");
     }
 
     @Override
     public double toBase(double input) {
-        return input * 1000;
+        return input * 0.001;
     }
 
     @Override
     public double convert(double input) {
-        return input * 0.001;
+        return input * 1000;
     }
 }

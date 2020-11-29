@@ -12,7 +12,7 @@ package Converts;
 public class CentiGram extends AbstractConverter {
 
     public CentiGram() {
-        super("Mass", "DG");
+        super("Mass", "CG");
     }
 
     @Override

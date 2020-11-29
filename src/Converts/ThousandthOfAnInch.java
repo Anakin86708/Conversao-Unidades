@@ -7,21 +7,20 @@ package Converts;
 
 /**
  *
- * @author silva
+ * @author Guilherme
  */
-public class Meters extends AbstractConverter {
+public class ThousandthOfAnInch extends AbstractConverter {
 
-    public Meters() {
-        super("Length", "M");
+    public ThousandthOfAnInch() {
+        super("Length", "Mil");
     }
 
     @Override
     public double toBase(double input) {
-        return input;
+        return input * 0.0000254;
     }
 
-    @Override
     public double convert(double input) {
-        return input;
+        return input * 39370;
     }
 }

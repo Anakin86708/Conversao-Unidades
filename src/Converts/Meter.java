@@ -7,20 +7,21 @@ package Converts;
 
 /**
  *
- * @author Guilherme
+ * @author silva
  */
-public class Mil extends AbstractConverter {
+public class Meter extends AbstractConverter {
 
-    public Mil() {
-        super("Length", "Mil");
+    public Meter() {
+        super("Length", "M");
     }
 
     @Override
     public double toBase(double input) {
-        return input * 0.0000254;
+        return input;
     }
 
+    @Override
     public double convert(double input) {
-        return input * 39370;
+        return input;
     }
 }
