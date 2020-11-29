@@ -36,6 +36,9 @@
                   <ResourceString bundle="Languages/language_en_US.properties" key="Copy" replaceFormat="Language.getResourceBundle().getString(&quot;{key}&quot;)"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemCopyActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

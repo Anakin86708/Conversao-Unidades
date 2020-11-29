@@ -9,14 +9,17 @@ import Codes.Controller;
 import Codes.Language;
 import java.awt.HeadlessException;
 
+import java.awt.Toolkit;
 import javax.swing.JComboBox;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import Converts.AbstractConverter;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 
 /**
  *
@@ -306,6 +309,11 @@ public class MainWindow extends javax.swing.JFrame {
         mEdit.setText(Language.getResourceBundle().getString("Edit")); // NOI18N
 
         menuItemCopy.setText(Language.getResourceBundle().getString("Copy")); // NOI18N
+        menuItemCopy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemCopyActionPerformed(evt);
+            }
+        });
         mEdit.add(menuItemCopy);
 
         menuBar.add(mEdit);
@@ -380,6 +388,12 @@ public class MainWindow extends javax.swing.JFrame {
     private void menuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemHelpActionPerformed
         new DialogMessages(this, true, "Help").setVisible(true);
     }//GEN-LAST:event_menuItemHelpActionPerformed
+
+    private void menuItemCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCopyActionPerformed
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        Transferable transferable = new StringSelection(textFieldConvertedNumber.getText());
+        clipboard.setContents(transferable, null);
+    }//GEN-LAST:event_menuItemCopyActionPerformed
     
     private void convertAndShow() throws HeadlessException {
         String inputString = this.textFieldInsertNumber.getText();
