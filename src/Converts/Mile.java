@@ -9,21 +9,10 @@ package Converts;
  *
  * @author Leo
  */
-public class Mile implements InterfaceConverter {
-    private final String category;
-    
-    public Mile(){
-        this.category = "length";
-    }
-    
-    @Override
-    public String toString() {
-        return "Mile (mi)";
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
+public class Mile extends AbstractConverter {
+
+    public Mile() {
+        super("Length", "Mi");
     }
 
     @Override
@@ -35,5 +24,5 @@ public class Mile implements InterfaceConverter {
     public double convert(double input) {
         return input * 0.000621371;
     }
-    
+
 }

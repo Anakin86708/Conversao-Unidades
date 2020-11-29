@@ -9,21 +9,10 @@ package Converts;
  *
  * @author Guiskater
  */
-public class KiloGram implements InterfaceConverter {
-    private final String category;
-    
-    public KiloGram() {
-        this.category = "mass";
-    }
-    
-    @Override
-    public String toString() {
-        return "Kilogram (kg)";
-    }
+public class KiloGram extends AbstractConverter {
 
-    @Override
-    public String getCategory() {
-        return this.category;
+    public KiloGram() {
+        super("Mass", "KG");
     }
 
     @Override

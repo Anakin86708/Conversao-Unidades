@@ -7,7 +7,6 @@ package GUI;
 
 import Codes.Controller;
 import Codes.Language;
-import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
 
 import javax.swing.JComboBox;
@@ -17,6 +16,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import Converts.AbstractConverter;
 
 /**
  *
@@ -25,15 +25,17 @@ import javax.swing.JOptionPane;
 public class MainWindow extends javax.swing.JFrame {
     
     private Controller controller;
-    private InterfaceConverter inputConverter;
-    private InterfaceConverter expectedConverter;
+    private AbstractConverter inputConverter;
+    private AbstractConverter expectedConverter;
     private String categoryString;
+    private ResourceBundle languageBundle;
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
+        this.languageBundle = Language.getResourceBundle();
         
         String localDir = System.getProperty("user.dir");
         String pathToFolderString = localDir + "\\src\\Converts";
@@ -41,30 +43,28 @@ public class MainWindow extends javax.swing.JFrame {
 
         // Cria o modelo com as classes carregadas
         controller.updateAllComboBox();
-        ResourceBundle languageBundle = Language.getResourceBundle();
-//        labelConvert.setText(languageBundle.getString("Convert"));
 
     }
     
-    public InterfaceConverter getInputConverter() {
+    public AbstractConverter getInputConverter() {
         setInputConverter();
         return this.inputConverter;
     }
     
     private void setInputConverter() {
         Object obj = comboBoxInput.getSelectedItem();
-        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.inputConverter = interfaceConverter;
     }
     
-    private InterfaceConverter getExpectedConverter() {
+    private AbstractConverter getExpectedConverter() {
         setExpectedConverter();
         return this.expectedConverter;
     }
     
     private void setExpectedConverter() {
         Object obj = comboBoxExpected.getSelectedItem();
-        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.expectedConverter = interfaceConverter;
     }
     
@@ -291,9 +291,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        mFile.setText("File");
+        mFile.setText(Language.getResourceBundle().getString("File")); // NOI18N
 
-        menuItemExit.setText("Exit");
+        menuItemExit.setText(Language.getResourceBundle().getString("Exit")); // NOI18N
         menuItemExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemExitActionPerformed(evt);
@@ -303,19 +303,24 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuBar.add(mFile);
 
-        mEdit.setText("Edit");
+        mEdit.setText(Language.getResourceBundle().getString("Edit")); // NOI18N
 
-        menuItemCopy.setText("Copy");
+        menuItemCopy.setText(Language.getResourceBundle().getString("Copy")); // NOI18N
         mEdit.add(menuItemCopy);
 
         menuBar.add(mEdit);
 
-        mHelp.setText("Help");
+        mHelp.setText(Language.getResourceBundle().getString("Help")); // NOI18N
 
-        menuItemHelp.setText("Help");
+        menuItemHelp.setText(Language.getResourceBundle().getString("Help")); // NOI18N
+        menuItemHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemHelpActionPerformed(evt);
+            }
+        });
         mHelp.add(menuItemHelp);
 
-        menuItemAbout.setText("About");
+        menuItemAbout.setText(Language.getResourceBundle().getString("About")); // NOI18N
         menuItemAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemAboutActionPerformed(evt);
@@ -342,7 +347,7 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAboutActionPerformed
-        // TODO add your handling code here:
+        new DialogMessages(this, true, "About").setVisible(true);
     }//GEN-LAST:event_menuItemAboutActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
@@ -371,6 +376,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void comboBoxExpectedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxExpectedItemStateChanged
         convertAndShow();
     }//GEN-LAST:event_comboBoxExpectedItemStateChanged
+
+    private void menuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemHelpActionPerformed
+        new DialogMessages(this, true, "Help").setVisible(true);
+    }//GEN-LAST:event_menuItemHelpActionPerformed
     
     private void convertAndShow() throws HeadlessException {
         String inputString = this.textFieldInsertNumber.getText();
@@ -431,7 +440,7 @@ public class MainWindow extends javax.swing.JFrame {
     
 
     private void changeComboBoxExpectedModel() {
-        InterfaceConverter interfaceConverter = getInputConverter();
+        AbstractConverter interfaceConverter = getInputConverter();
         String actualCategory = interfaceConverter.getCategory();
         
         DefaultComboBoxModel outputModel = this.controller.generateCobBoxModel(actualCategory);
@@ -440,14 +449,14 @@ public class MainWindow extends javax.swing.JFrame {
         changeUnit(actualCategory);
     }
 
-    private void changeUnit(String unit) {
+    public void changeUnit(String unit) {
         this.categoryString = unit;
-        labelHeader.setText(Language.getResourceBundle().getString("Unit") + unit);
+        labelHeader.setText(this.languageBundle.getString("Unit") + unit);
     }
     
     public void changeClassesCounter() {
         int count = this.comboBoxInput.getItemCount();
-        this.labelCounterClasses.setText("Number of avaliable classes: " + count);
+        this.labelCounterClasses.setText(this.languageBundle.getString("Number_classes") + count);
     }
 
     /**
@@ -513,10 +522,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     public javax.swing.JLabel getLabelHeader() {
         return labelHeader;
-    }
-
-    public javax.swing.JLabel getLabelHeader1() {
-        return labelHeader1;
     }
 
     public javax.swing.JLabel getLabelTo() {

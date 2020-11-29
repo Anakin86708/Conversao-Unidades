@@ -9,33 +9,19 @@ package Converts;
  *
  * @author silva
  */
-public class Inches implements InterfaceConverter{
-    
-    private final String categoty;
+public class Inches extends AbstractConverter {
 
     public Inches() {
-        this.categoty = "length";
+        super("Length", "IN");
     }
 
-    @Override
-    public String toString() {
-        return "Inches (in)";
-    }
-    
     @Override
     public double toBase(double input) {
         return input * 0.0254;
     }
-    
+
     @Override
     public double convert(double input) {
         return input * 39.37008;
     }
-    
-
-    @Override
-    public String getCategory() {
-        return this.categoty;
-    }
-    
 }

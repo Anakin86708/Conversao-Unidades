@@ -5,6 +5,8 @@
  */
 package Converts;
 
+import Codes.Language;
+
 /**
  *
  * @author silva
@@ -14,13 +16,31 @@ package Converts;
  * Teste de Javadoc
  * @author Leo
  */
-public interface InterfaceConverter {
+public abstract class AbstractConverter {
+    
+    private final String category;
+    private final String name;
 
+    public AbstractConverter(String category, String name) {
+        this.category = Language.getResourceBundle().getString(category);;
+        this.name = Language.getResourceBundle().getString(name);
+    }
+    
     /**
      * Retorna a categoria da medida.
      * @return retorna a categoria
      */
-    String getCategory();
+    public String getCategory() {
+        return this.category;
+    }
+    
+    /**
+     * Representa o objeto como String
+     * @return Nome da unidade associada a classe
+     */
+    public String toString() {
+        return this.name; 
+    }
     
    /**
     * Recebe o input do usuário e o transforma para a medida base (m)
@@ -28,7 +48,7 @@ public interface InterfaceConverter {
     * @return retorna o input em metros
     */
     
-    public double toBase(double input);
+    abstract public double toBase(double input);
     
     /**
      * Recebe um valor em metros, e o transforma para a medida escolhida.
@@ -36,6 +56,6 @@ public interface InterfaceConverter {
      * @return Retorna o valor convertido para a unidade escolhida.
      */
     
-    public double convert(double input);
+    abstract public double convert(double input);
     
 }

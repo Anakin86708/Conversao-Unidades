@@ -9,21 +9,10 @@ package Converts;
  *
  * @author Guiskater
  */
-public class DeciGram implements InterfaceConverter {
-    private final String category;
-    
-    public DeciGram() {
-        this.category = "mass";
-    }
-    
-    @Override
-    public String toString() {
-        return "Decigram (dg)";
-    }
+public class DeciGram extends AbstractConverter {
 
-    @Override
-    public String getCategory() {
-        return this.category;
+    public DeciGram() {
+        super("Mass", "DG");
     }
 
     @Override
@@ -35,5 +24,5 @@ public class DeciGram implements InterfaceConverter {
     public double convert(double input) {
         return input * 10;
     }
-    
+
 }
