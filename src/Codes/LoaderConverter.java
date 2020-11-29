@@ -20,31 +20,32 @@ import java.util.List;
  */
 public class LoaderConverter {
 
-    private String pathToFolderString;
-    private List<InterfaceConverter> loadedObject = new ArrayList<>();
+    private List<InterfaceConverter> loadedObject;
 
-    public LoaderConverter(String pathToFolderString) {
-        this.pathToFolderString = pathToFolderString;
+    public LoaderConverter() {
+
     }
 
     public InterfaceConverter[] getLoadedObject() {
+        this.loader();
         return loadedObject.toArray(new InterfaceConverter[0]);
     }
 
     /**
-     * Responsável por carregar pela primeira vez todas as classes que estão disponíveis
-     * e carregar no arrayList todos os Objects.
+     * Responsável por carregar pela primeira vez todas as classes que estão
+     * disponíveis e carregar no arrayList todos os Objects.
      */
     public void loader() {
+        this.loadedObject = new ArrayList<>();
         String packageString = "Converts";
         File[] filesFromFolder = getFilesFromFolder();
         for (File classFile : filesFromFolder) {
             try {
-                String classString = classFile.getName().replace(".java", "");                
+                String classString = classFile.getName().replace(".java", "");
                 Object o = Class.forName(packageString + "." + classString).getConstructor().newInstance();
                 InterfaceConverter converter = (InterfaceConverter) o;
                 addToLoaded(converter);
-                
+
             } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
                 Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NoSuchMethodException ex) {
@@ -52,15 +53,16 @@ public class LoaderConverter {
             }
         }
     }
-    
+
     /**
-     * Coloca apenas um objeto por classe dentro do ArrayList,
-     * evitando duplicatas.
+     * Coloca apenas um objeto por classe dentro do ArrayList, evitando
+     * duplicatas.
+     *
      * @param obj Objeto a ser comparado.
      */
     private void addToLoaded(InterfaceConverter obj) {
         String classString = obj.getClass().getName();
-        for (InterfaceConverter objDefault: this.loadedObject) {
+        for (InterfaceConverter objDefault : this.loadedObject) {
             if (objDefault.getClass().getName().equals(classString)) {
                 return;  // Já está dentro do arrayList
             }
@@ -68,19 +70,21 @@ public class LoaderConverter {
         // Do contrário, adiciona no ArrayList
         this.loadedObject.add(obj);
     }
-    
+
     /**
      * Lê todos os arquivos .java dentro de uma pasta.
+     *
      * @return Array de arquivos de classes a serem carregados.
      */
     private File[] getFilesFromFolder() {
-        File folder = new File(this.pathToFolderString);
+        File folder = new File(Controller.getPathToFolderString());
         FilenameFilter filterName = generateFilenameFilter(".java");
         return folder.listFiles(filterName);
     }
 
     /**
      * Filtro de arquivos.
+     *
      * @param filterString Nome que deseja ser filtrado.
      * @return booleano indicando se o arquivo corresponde ao filtro.
      */

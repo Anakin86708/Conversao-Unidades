@@ -9,6 +9,8 @@ import Codes.Controller;
 import Codes.Language;
 import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
+
+import javax.swing.JComboBox;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -23,7 +25,6 @@ import javax.swing.JOptionPane;
 public class MainWindow extends javax.swing.JFrame {
     
     private Controller controller;
-    private String pathToFolderString;
     private InterfaceConverter inputConverter;
     private InterfaceConverter expectedConverter;
     private String categoryString;
@@ -35,20 +36,17 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         
         String localDir = System.getProperty("user.dir");
-        this.pathToFolderString = localDir+ "\\src\\Converts";
-        System.out.println("Folder: " + this.pathToFolderString);
-        this.controller = new Controller(pathToFolderString);
-        
+        String pathToFolderString = localDir + "\\src\\Converts";
+        this.controller = new Controller(this, pathToFolderString);
+
         // Cria o modelo com as classes carregadas
-        updateComboBoxInputModel(this.controller.generateComboBoxModel());
-        
-        changeComboBoxExpectedModel();
-        
+        controller.updateAllComboBox();
         ResourceBundle languageBundle = Language.getResourceBundle();
 //        labelConvert.setText(languageBundle.getString("Convert"));
+
     }
     
-    private InterfaceConverter getInputConverter() {
+    public InterfaceConverter getInputConverter() {
         setInputConverter();
         return this.inputConverter;
     }
@@ -70,7 +68,13 @@ public class MainWindow extends javax.swing.JFrame {
         this.expectedConverter = interfaceConverter;
     }
     
+    public JComboBox<String> getComboBoxInput() {
+        return comboBoxInput;
+    }
     
+    public JComboBox<String> getComboBoxExpected() {
+        return comboBoxExpected;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,7 +101,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelUserOption2 = new javax.swing.JPanel();
         comboBoxExpected = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
-        labelHeader1 = new javax.swing.JLabel();
+        labelCounterClasses = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mFile = new javax.swing.JMenu();
         menuItemExit = new javax.swing.JMenuItem();
@@ -236,18 +240,18 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 204));
 
-        labelHeader1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelHeader1.setText("Gaveta Produções");
+        labelCounterClasses.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCounterClasses.setText("Gaveta Produções");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelHeader1, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+            .addComponent(labelCounterClasses, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelHeader1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(labelCounterClasses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
@@ -345,16 +349,17 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_menuItemExitActionPerformed
-    
     /**
-     * Altera o modelo da ComboBox de output de acordo com a categoria da unidade selecionada
-     * @param evt 
+     * Altera o modelo da ComboBox de output de acordo com a categoria da
+     * unidade selecionada
+     *
+     * @param evt
      */
     private void comboBoxInputItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxInputItemStateChanged
         // Alterar apenas quando a categoria for diferente
         String currentCategory = getInputConverter().getCategory();
         if (!currentCategory.equals(this.categoryString)) {
-            changeComboBoxExpectedModel();
+            controller.updateComboBoxExpectedModel();
         }
         convertAndShow();
     }//GEN-LAST:event_comboBoxInputItemStateChanged
@@ -366,7 +371,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void comboBoxExpectedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxExpectedItemStateChanged
         convertAndShow();
     }//GEN-LAST:event_comboBoxExpectedItemStateChanged
-
+    
     private void convertAndShow() throws HeadlessException {
         String inputString = this.textFieldInsertNumber.getText();
         try {
@@ -374,16 +379,16 @@ public class MainWindow extends javax.swing.JFrame {
             setConverted(controller.convert(input, this.getInputConverter(), this.getExpectedConverter()));
         } catch (NumberFormatException e) {
             if (!inputString.isEmpty()) {
-            String message = "Invalid value!\n"+e.getMessage();
-            String titleString = "Error";
-            JOptionPane.showMessageDialog(this, message, titleString, JOptionPane.WARNING_MESSAGE);
+                String message = "Invalid value!\n" + e.getMessage();
+                String titleString = "Error";
+                JOptionPane.showMessageDialog(this, message, titleString, JOptionPane.WARNING_MESSAGE);
             } else {
                 // Valor é vazio
                 setConverted(0.0);
             }
         }
     }
-
+    
     private void setConverted(Double value) {
         long roundedNumber = Math.round(value);
         
@@ -400,6 +405,7 @@ public class MainWindow extends javax.swing.JFrame {
         }    
     }
     
+
     private int countDecimalPlaces(Double value){
         DecimalFormatSymbols decimalSeparator = new DecimalFormatSymbols();
         
@@ -427,14 +433,11 @@ public class MainWindow extends javax.swing.JFrame {
         labelHeader.setText(Language.getResourceBundle().getString("Unit") + unit);
     }
     
-    /**
-     * Atualiza a lista de unidades que podem ser selecionadas pelo usuário
-     * @param model Modelo a ser aplicado a combobox de entrada
-     */
-    public void updateComboBoxInputModel(DefaultComboBoxModel model) {
-        this.comboBoxInput.setModel(model);
+    public void changeClassesCounter() {
+        int count = this.comboBoxInput.getItemCount();
+        this.labelCounterClasses.setText("Number of avaliable classes: " + count);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -462,7 +465,6 @@ public class MainWindow extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -470,8 +472,8 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxInput;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelConvert;
+    private javax.swing.JLabel labelCounterClasses;
     private javax.swing.JLabel labelHeader;
-    private javax.swing.JLabel labelHeader1;
     private javax.swing.JLabel labelTo;
     private javax.swing.JMenu mEdit;
     private javax.swing.JMenu mFile;
