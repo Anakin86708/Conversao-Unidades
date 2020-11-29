@@ -9,26 +9,13 @@ package Converts;
  *
  * @author Leo
  */
-public class Parsec implements InterfaceConverter{
-    
-    private final String category;
-    
+public class Parsec extends AbstractConverter{
+
     public Parsec() 
     {
-        this.category = "length";
+        super("Length", "PC");
     }
     
-    @Override
-    public String toString() {
-        return "Parsec (pc)"; 
-    }
-    
-    
-    @Override
-    public String getCategory() {
-        return this.category;
-    }
-
     @Override
     public double toBase(double input) {
         return input * 3.086e+16;

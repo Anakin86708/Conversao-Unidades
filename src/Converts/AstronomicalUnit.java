@@ -11,21 +11,10 @@ import Codes.Language;
  *
  * @author Leo
  */
-public class AstronomicalUnit implements InterfaceConverter{
-    private final String category;
-    
-    public AstronomicalUnit(){
-        this.category = Language.getResourceBundle().getString("Length");
-    }
-    
-    @Override
-    public String toString() {
-        return "Astronomical Unit (au)"; 
-    }
-     
-    @Override
-    public String getCategory() {
-        return this.category;
+public class AstronomicalUnit extends AbstractConverter {
+
+    public AstronomicalUnit() {
+        super("Length", "AU");
     }
 
     @Override
@@ -37,5 +26,5 @@ public class AstronomicalUnit implements InterfaceConverter{
     public double convert(double input) {
         return input * 6.68459e-12;
     }
-    
+
 }

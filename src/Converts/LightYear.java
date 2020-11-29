@@ -9,22 +9,10 @@ package Converts;
  *
  * @author Leo
  */
-public class LightYear implements InterfaceConverter{
-    
-    private final String category;
-    
-    public LightYear(){
-        this.category = "length";
-    }
+public class LightYear extends AbstractConverter {
 
-    @Override
-    public String toString() {
-        return "Light Year (ly)"; 
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
+    public LightYear() {
+        super("Length", "LY");
     }
 
     @Override

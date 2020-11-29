@@ -9,36 +9,20 @@ package Converts;
  *
  * @author enzoj
  */
-public class CubicCentimeter implements InterfaceConverter{
-    public final String category;
-    
+public class CubicCentimeter extends AbstractConverter {
+
     public CubicCentimeter() {
-        this.category = "volume";
-    }
-    
-    @Override
-    public String toString() {
-        return "Cubic Centimeter (cm3)";
-    }
-    
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String getCategory() {
-        return this.category;
+        super("Volume", "CM3");
     }
 
     @Override
     public double toBase(double input) {
-        return input *0.001; //To change body of generated methods, choose Tools | Templates.
+        return input * 0.001; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public double convert(double input) {
-       return input * 1000; //To change body of generated methods, choose Tools | Templates.
+        return input * 1000; //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
 }

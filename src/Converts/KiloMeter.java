@@ -9,28 +9,17 @@ package Converts;
  *
  * @author Guiskater
  */
-public class KiloMeter implements InterfaceConverter {
-    private final String category;
-    
+public class KiloMeter extends AbstractConverter {
+
     public KiloMeter() {
-        this.category = "length";
+        super("Length", "KM");
     }
-    
-    @Override
-    public String toString() {
-        return "Kilometer (km)";
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
-    }
-    
+
     @Override
     public double toBase(double input) {
         return input * 1000;
     }
-    
+
     public double convert(double input) {
         return input * 0.001;
     }

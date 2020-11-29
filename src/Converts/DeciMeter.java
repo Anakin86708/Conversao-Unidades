@@ -9,23 +9,12 @@ package Converts;
  *
  * @author Guiskater
  */
-public class DeciMeter implements InterfaceConverter {
-    private final String category;
-    
+public class DeciMeter extends AbstractConverter {
+ 
     public DeciMeter() {
-        this.category = "length";
+        super("Lenght", "DM");
     }
-    
-    @Override
-    public String toString() {
-        return "Decimeters (dm)";
-    }
-
-    @Override
-    public String getCategory() {
-        return this.category;
-    }
-
+     
     @Override
     public double toBase(double input) {
         return input * 0.1;

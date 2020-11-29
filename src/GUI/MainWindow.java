@@ -7,7 +7,6 @@ package GUI;
 
 import Codes.Controller;
 import Codes.Language;
-import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
 
 import javax.swing.JComboBox;
@@ -17,6 +16,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import Converts.AbstractConverter;
 
 /**
  *
@@ -25,8 +25,8 @@ import javax.swing.JOptionPane;
 public class MainWindow extends javax.swing.JFrame {
     
     private Controller controller;
-    private InterfaceConverter inputConverter;
-    private InterfaceConverter expectedConverter;
+    private AbstractConverter inputConverter;
+    private AbstractConverter expectedConverter;
     private String categoryString;
     private ResourceBundle languageBundle;
 
@@ -46,25 +46,25 @@ public class MainWindow extends javax.swing.JFrame {
 
     }
     
-    public InterfaceConverter getInputConverter() {
+    public AbstractConverter getInputConverter() {
         setInputConverter();
         return this.inputConverter;
     }
     
     private void setInputConverter() {
         Object obj = comboBoxInput.getSelectedItem();
-        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.inputConverter = interfaceConverter;
     }
     
-    private InterfaceConverter getExpectedConverter() {
+    private AbstractConverter getExpectedConverter() {
         setExpectedConverter();
         return this.expectedConverter;
     }
     
     private void setExpectedConverter() {
         Object obj = comboBoxExpected.getSelectedItem();
-        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.expectedConverter = interfaceConverter;
     }
     
@@ -419,7 +419,7 @@ public class MainWindow extends javax.swing.JFrame {
     
 
     private void changeComboBoxExpectedModel() {
-        InterfaceConverter interfaceConverter = getInputConverter();
+        AbstractConverter interfaceConverter = getInputConverter();
         String actualCategory = interfaceConverter.getCategory();
         
         DefaultComboBoxModel outputModel = this.controller.generateCobBoxModel(actualCategory);

@@ -9,21 +9,10 @@ package Converts;
  *
  * @author Guiskater
  */
-public class MiliGram implements InterfaceConverter {
-    private final String category;
-    
-    public MiliGram() {
-        this.category = "mass";
-    }
-    
-    @Override
-    public String toString() {
-        return "Miligram (mg)";
-    }
+public class MiliGram extends AbstractConverter {
 
-    @Override
-    public String getCategory() {
-        return this.category;
+    public MiliGram() {
+        super("Mass", "MG");
     }
 
     @Override

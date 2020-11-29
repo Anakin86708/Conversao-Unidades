@@ -9,36 +9,19 @@ package Converts;
  *
  * @author enzoj
  */
-public class CubicHectometer implements InterfaceConverter{
-    private final String category;
-    
-    public CubicHectometer() {
-        this.category = "volume";
-    }
+public class CubicHectometer extends AbstractConverter {
 
-    @Override
-    public String toString() {
-        return "Cubic Hectometer (hm3)";
-    }
-    
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String getCategory() {
-        return this.category;
+    public CubicHectometer() {
+        super("Volume", "HM3");
     }
 
     @Override
     public double toBase(double input) {
-        return input *1E+9; //To change body of generated methods, choose Tools | Templates.
+        return input * 1E+9; //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public double convert(double input) {
-       return input * 1E-9; //To change body of generated methods, choose Tools | Templates.
+        return input * 1E-9; //To change body of generated methods, choose Tools | Templates.
     }
 }
-
-

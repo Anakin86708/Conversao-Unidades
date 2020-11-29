@@ -9,21 +9,10 @@ package Converts;
  *
  * @author Guiskater
  */
-public class CentiMeter implements InterfaceConverter {
-    private final String category;
-    
-    public CentiMeter() {
-        this.category = "length";
-    }
-    
-    @Override
-    public String toString() {
-        return "Centimeters (cm)";
-    }
+public class CentiMeter extends AbstractConverter {
 
-    @Override
-    public String getCategory() {
-        return this.category;
+    public CentiMeter() {
+        super("Length", "CM");
     }
 
     @Override

@@ -9,22 +9,10 @@ package Converts;
  *
  * @author Leo
  */
-public class Yard implements InterfaceConverter{
-    
-    private final String category;
-    
-    public Yard(){
-        this.category = "length";
-    }
-    
-    @Override
-    public String toString() {
-        return "Yard (yd)"; 
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
+public class Yard extends AbstractConverter {
+
+    public Yard() {
+        super("Length", "YD");
     }
 
     @Override
@@ -36,5 +24,5 @@ public class Yard implements InterfaceConverter{
     public double convert(double input) {
         return input * 1.09361;
     }
-    
+
 }

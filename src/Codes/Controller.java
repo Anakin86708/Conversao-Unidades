@@ -6,12 +6,12 @@
 package Codes;
 
 import javax.swing.DefaultComboBoxModel;
-import Converts.InterfaceConverter;
 import GUI.MainWindow;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Converts.AbstractConverter;
 
 /**
  *
@@ -23,7 +23,7 @@ public class Controller {
     private Thread watcherThread;
     private FileWatcher watcher;
     private LoaderConverter loaderConverter;
-    private List<InterfaceConverter> filtredList;
+    private List<AbstractConverter> filtredList;
     private static String pathToFolderString;  // Deve ser o único local contendo a string
 
     public Controller(MainWindow mainWindow, String pathToFolderString) {
@@ -39,7 +39,7 @@ public class Controller {
         this.loaderConverter.loader();
     }
 
-    public List<InterfaceConverter> getFiltredList() {
+    public List<AbstractConverter> getFiltredList() {
         return filtredList;
     }
 
@@ -61,7 +61,7 @@ public class Controller {
 
     public DefaultComboBoxModel generateCobBoxModel(String filter) {
         this.filtredList = new ArrayList<>();
-        for (InterfaceConverter itemObject : loaderConverter.getLoadedObject()) {
+        for (AbstractConverter itemObject : loaderConverter.getLoadedObject()) {
             if (itemObject.getCategory().equals(filter)) {
                 // Pertence a mesma categoria desejada
                 filtredList.add(itemObject);
@@ -70,7 +70,7 @@ public class Controller {
         return new DefaultComboBoxModel(filtredList.toArray());
     }
 
-    public Double convert(double value, InterfaceConverter inputConverter, InterfaceConverter expectedConverter) {
+    public Double convert(double value, AbstractConverter inputConverter, AbstractConverter expectedConverter) {
         return expectedConverter.convert(inputConverter.toBase(value));
     }
 
@@ -97,7 +97,7 @@ public class Controller {
     }
 
     public void updateComboBoxExpectedModel() {
-        InterfaceConverter interfaceConverter = mainWindow.getInputConverter();
+        AbstractConverter interfaceConverter = mainWindow.getInputConverter();
         String actualCategory = interfaceConverter.getCategory();
         DefaultComboBoxModel outputModel = this.generateCobBoxModel(actualCategory);
         mainWindow.getComboBoxExpected().setModel(outputModel);

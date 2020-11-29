@@ -11,28 +11,17 @@ import Codes.Language;
  *
  * @author Guiskater
  */
-public class Feet implements InterfaceConverter {
-    private final String category;
-    
+public class Feet extends AbstractConverter {
+
     public Feet() {
-        this.category = Language.getResourceBundle().getString("Length");
+        super("Lenght", "FT");
     }
-    
-    @Override
-    public String toString() {
-        return "Feet (ft)";
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
-    }
-    
+
     @Override
     public double toBase(double input) {
         return input * 0.3048;
     }
-    
+
     public double convert(double input) {
         return input * 3.28084;
     }

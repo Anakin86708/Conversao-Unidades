@@ -9,28 +9,17 @@ package Converts;
  *
  * @author Guilherme
  */
-public class Mil implements InterfaceConverter{
-    private final String category;
-    
+public class Mil extends AbstractConverter {
+
     public Mil() {
-        this.category  = "length";
+        super("Length", "Mil");
     }
-    
-    @Override
-    public String toString() {
-        return "Mil (mil)";
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
-    }
-    
+
     @Override
     public double toBase(double input) {
         return input * 0.0000254;
     }
-    
+
     public double convert(double input) {
         return input * 39370;
     }
