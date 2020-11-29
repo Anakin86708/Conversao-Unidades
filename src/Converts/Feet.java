@@ -5,6 +5,8 @@
  */
 package Converts;
 
+import Codes.Language;
+
 /**
  *
  * @author Guiskater
@@ -13,7 +15,7 @@ public class Feet implements InterfaceConverter {
     private final String category;
     
     public Feet() {
-        this.category = "length";
+        this.category = Language.getResourceBundle().getString("Length");
     }
     
     @Override

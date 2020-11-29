@@ -28,12 +28,14 @@ public class MainWindow extends javax.swing.JFrame {
     private InterfaceConverter inputConverter;
     private InterfaceConverter expectedConverter;
     private String categoryString;
+    private ResourceBundle languageBundle;
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
         initComponents();
+        this.languageBundle = Language.getResourceBundle();
         
         String localDir = System.getProperty("user.dir");
         String pathToFolderString = localDir + "\\src\\Converts";
@@ -41,8 +43,6 @@ public class MainWindow extends javax.swing.JFrame {
 
         // Cria o modelo com as classes carregadas
         controller.updateAllComboBox();
-        ResourceBundle languageBundle = Language.getResourceBundle();
-//        labelConvert.setText(languageBundle.getString("Convert"));
 
     }
     
@@ -428,14 +428,14 @@ public class MainWindow extends javax.swing.JFrame {
         changeUnit(actualCategory);
     }
 
-    private void changeUnit(String unit) {
+    public void changeUnit(String unit) {
         this.categoryString = unit;
-        labelHeader.setText(Language.getResourceBundle().getString("Unit") + unit);
+        labelHeader.setText(this.languageBundle.getString("Unit") + unit);
     }
     
     public void changeClassesCounter() {
         int count = this.comboBoxInput.getItemCount();
-        this.labelCounterClasses.setText("Number of avaliable classes: " + count);
+        this.labelCounterClasses.setText(this.languageBundle.getString("Number_classes") + count);
     }
 
     /**
@@ -501,10 +501,6 @@ public class MainWindow extends javax.swing.JFrame {
 
     public javax.swing.JLabel getLabelHeader() {
         return labelHeader;
-    }
-
-    public javax.swing.JLabel getLabelHeader1() {
-        return labelHeader1;
     }
 
     public javax.swing.JLabel getLabelTo() {
