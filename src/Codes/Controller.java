@@ -14,7 +14,8 @@ import java.util.logging.Logger;
 import Converts.AbstractConverter;
 
 /**
- *
+ * Responsible for centralizing the logic of the program in relation 
+ * to conversion and is responsible for creating combobo models.
  * @author silva
  */
 public class Controller {
@@ -39,6 +40,10 @@ public class Controller {
         this.loaderConverter.loader();
     }
 
+    /**
+     * Responsable for Filtred List.
+     * @return the Filtred List.
+     */
     public List<AbstractConverter> getFiltredList() {
         return filtredList;
     }
@@ -53,17 +58,26 @@ public class Controller {
         this.watcher.reload();
     }
 
+    /**
+     * Responsable to create the Combo Box Model with the items. 
+     * @return the model with the items inside the Combo Box Model (options to choice).
+     */
     public DefaultComboBoxModel generateComboBoxModel() {
         Object[] items = loaderConverter.getLoadedObject();
         DefaultComboBoxModel model = new DefaultComboBoxModel(items);
         return model;
     }
-
+    
+    /**
+     * Responsable for show the classes in the same category,
+     * @param filter define the category.
+     * @return the Combo Box Model with the Filter inside the Array.
+     */
     public DefaultComboBoxModel generateCobBoxModel(String filter) {
         this.filtredList = new ArrayList<>();
         for (AbstractConverter itemObject : loaderConverter.getLoadedObject()) {
             if (itemObject.getCategory().equals(filter)) {
-                // Pertence a mesma categoria desejada
+                // Belongs to the same desired category
                 filtredList.add(itemObject);
             }
         }

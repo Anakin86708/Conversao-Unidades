@@ -11,8 +11,18 @@ import GUI.MainWindow;
  *
  * @author silva
  */
+
+/**
+ * The purpose of the "Main" class is to initialize the program.
+ * @author enzoj
+ */
 public class Main {
 
+
+    /**
+     * Method that iniatilize the program.
+     * @param args Parameter to be iniatilized.
+     */
     public static void main(String[] args) {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

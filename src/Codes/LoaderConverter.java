@@ -22,18 +22,14 @@ public class LoaderConverter {
 
     private List<AbstractConverter> loadedObject;
 
-    public LoaderConverter() {
-
-    }
-
     public AbstractConverter[] getLoadedObject() {
         this.loader();
         return loadedObject.toArray(new AbstractConverter[0]);
     }
 
     /**
-     * Responsável por carregar pela primeira vez todas as classes que estão
-     * disponíveis e carregar no arrayList todos os Objects.
+     * Responsable for loading all available classes for the first time 
+     * and all Objects into the arrayList.
      */
     public void loader() {
         this.loadedObject = new ArrayList<>();
@@ -49,33 +45,31 @@ public class LoaderConverter {
             } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException  ex) {
                 Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NoSuchMethodException | InvocationTargetException ex) {
-                // Método não foi encontrado pois representa uma classe abstrata
-                // Basta ignorar
+                // Method was not found because it was a abstract class
+                // Just ignore and continue exection
             }
         }
     }
 
     /**
-     * Coloca apenas um objeto por classe dentro do ArrayList, evitando
-     * duplicatas.
-     *
-     * @param obj Objeto a ser comparado.
+     * Place only one object per class inside the ArrayList,
+     * preventing duplicates.
+     * @param obj Object to be compared.
      */
     private void addToLoaded(AbstractConverter obj) {
         String classString = obj.getClass().getName();
         for (AbstractConverter objDefault : this.loadedObject) {
             if (objDefault.getClass().getName().equals(classString)) {
-                return;  // Já está dentro do arrayList
+                return;  // It´s already inside the arrayList   
             }
         }
-        // Do contrário, adiciona no ArrayList
+        // Otherwise, addd into arrayList 
         this.loadedObject.add(obj);
     }
 
     /**
-     * Lê todos os arquivos .java dentro de uma pasta.
-     *
-     * @return Array de arquivos de classes a serem carregados.
+     * Reads all .java files within a folder. 
+     * @return Array of classes files to be loaded.
      */
     private File[] getFilesFromFolder() {
         File folder = new File(Controller.getPathToFolderString());
@@ -84,10 +78,9 @@ public class LoaderConverter {
     }
 
     /**
-     * Filtro de arquivos.
-     *
-     * @param filterString Nome que deseja ser filtrado.
-     * @return booleano indicando se o arquivo corresponde ao filtro.
+     * Files filter
+     * @param filterString Name that wish to be filtered.
+     * @return boolean indicating if the file matches the filter.
      */
     private FilenameFilter generateFilenameFilter(String filterString) {
         return new FilenameFilter() {
