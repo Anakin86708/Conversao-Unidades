@@ -1,0 +1,13 @@
+O propósito desse programa é realizar a conversão de unidades de medida com valores inseridos pelo usuário. 
+
+Na tela principal, o usuário pode inserir no campo à esquerda o valor numérico que deseja converter, sendo que esses valores não podem conter sinal negativo(-). Além disso, o usuário pode selecionar e copiar o valor numérico convertido no campo à direita.
+
+Para indicar a unidade de medida do valor a ser convertido, no campo à esquerda há uma lista com as opções disponíveis, com as unidades de massa, comprimento e volume. Ao selecionar essa opção, a lista à direita será atualizada com opções restringidas ao tipo de unidade do primeiro campo. 
+
+O usuário pode verificar o tipo de unidade de medida selecionada no campo superior da tela.
+
+As opções do menu são descritas abaixo:
+    • Ao abrir a aba “File” e selecionar a opção “Exit”: A aplicação será fechada
+    • Ao abrir a aba “Edit” e selecionar a opção “Copy”: A aplicação ira copiar o valor convertido para a área de transferência do usuário
+    • Ao abrir a aba “Help” e selecionar a opção “Help”: Uma nova janela será aberta contendo informações essenciais para uso do programa.
+    • Ao abrir a aba “Help” e selecionar a opção “About”: Uma nova janela será aberta contendo informações sobre o propósito do programa.

@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Singleton
+ * https://docs.oracle.com/javase/tutorial/essential/io/notification.html
  *
  * @author silva
  */

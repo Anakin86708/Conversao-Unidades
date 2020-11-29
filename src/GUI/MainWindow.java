@@ -291,9 +291,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        mFile.setText("File");
+        mFile.setText(Language.getResourceBundle().getString("File")); // NOI18N
 
-        menuItemExit.setText("Exit");
+        menuItemExit.setText(Language.getResourceBundle().getString("Exit")); // NOI18N
         menuItemExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemExitActionPerformed(evt);
@@ -303,19 +303,24 @@ public class MainWindow extends javax.swing.JFrame {
 
         menuBar.add(mFile);
 
-        mEdit.setText("Edit");
+        mEdit.setText(Language.getResourceBundle().getString("Edit")); // NOI18N
 
-        menuItemCopy.setText("Copy");
+        menuItemCopy.setText(Language.getResourceBundle().getString("Copy")); // NOI18N
         mEdit.add(menuItemCopy);
 
         menuBar.add(mEdit);
 
-        mHelp.setText("Help");
+        mHelp.setText(Language.getResourceBundle().getString("Help")); // NOI18N
 
-        menuItemHelp.setText("Help");
+        menuItemHelp.setText(Language.getResourceBundle().getString("Help")); // NOI18N
+        menuItemHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemHelpActionPerformed(evt);
+            }
+        });
         mHelp.add(menuItemHelp);
 
-        menuItemAbout.setText("About");
+        menuItemAbout.setText(Language.getResourceBundle().getString("About")); // NOI18N
         menuItemAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuItemAboutActionPerformed(evt);
@@ -342,7 +347,7 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAboutActionPerformed
-        // TODO add your handling code here:
+        new DialogMessages(this, true, "About").setVisible(true);
     }//GEN-LAST:event_menuItemAboutActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
@@ -371,6 +376,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void comboBoxExpectedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxExpectedItemStateChanged
         convertAndShow();
     }//GEN-LAST:event_comboBoxExpectedItemStateChanged
+
+    private void menuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemHelpActionPerformed
+        new DialogMessages(this, true, "Help").setVisible(true);
+    }//GEN-LAST:event_menuItemHelpActionPerformed
     
     private void convertAndShow() throws HeadlessException {
         String inputString = this.textFieldInsertNumber.getText();
