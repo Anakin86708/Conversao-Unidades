@@ -40,10 +40,10 @@ public class FileWatcher implements Runnable {
             Path path = FileSystems.getDefault().getPath(Controller.getPathToFolderString());
             WatchService watcher = FileSystems.getDefault().newWatchService();
             watchKey = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
+            WatchKey key = watcher.take();
 
             // Apenas continua quando for registrado um dos eventos acima
             if (keepRunning) {
-                WatchKey key = watcher.take();
                 this.updateClasses();
             }
         } catch (IOException ex) {
@@ -67,6 +67,7 @@ public class FileWatcher implements Runnable {
     public void reload() {
         System.out.println("Reloaded path to classes");
         watchKey.cancel();
+        updateClasses();
     }
 
     public void safeStop() {

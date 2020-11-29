@@ -7,19 +7,19 @@ package GUI;
 
 import Codes.Controller;
 import Codes.Language;
+import Converts.AbstractConverter;
 import java.awt.HeadlessException;
-
 import java.awt.Toolkit;
-import javax.swing.JComboBox;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ResourceBundle;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import Converts.AbstractConverter;
-import java.awt.datatransfer.Clipboard;
-import java.awt.datatransfer.StringSelection;
-import java.awt.datatransfer.Transferable;
 
 /**
  *
@@ -38,6 +38,7 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        this.setTitle("Conversor");
         this.languageBundle = Language.getResourceBundle();
         
         String localDir = System.getProperty("user.dir");
@@ -103,10 +104,13 @@ public class MainWindow extends javax.swing.JFrame {
         comboBoxInput = new javax.swing.JComboBox<>();
         panelUserOption2 = new javax.swing.JPanel();
         comboBoxExpected = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
+        jSeparator2 = new javax.swing.JSeparator();
+        panelFooter = new javax.swing.JPanel();
         labelCounterClasses = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         mFile = new javax.swing.JMenu();
+        menuItemSettings = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         menuItemExit = new javax.swing.JMenuItem();
         mEdit = new javax.swing.JMenu();
         menuItemCopy = new javax.swing.JMenuItem();
@@ -115,7 +119,13 @@ public class MainWindow extends javax.swing.JFrame {
         menuItemAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 153));
 
+        panelContainer.setBackground(new java.awt.Color(153, 153, 153));
+
+        panelHeader.setBackground(new java.awt.Color(51, 51, 51));
+
+        labelHeader.setForeground(new java.awt.Color(255, 255, 255));
         labelHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelHeader.setText("Unit: distances");
 
@@ -133,8 +143,11 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        panelTextConvert.setBackground(new java.awt.Color(255, 0, 153));
+        panelTextConvert.setBackground(new java.awt.Color(102, 102, 102));
+        panelTextConvert.setForeground(new java.awt.Color(255, 255, 255));
 
+        labelConvert.setBackground(new java.awt.Color(153, 153, 153));
+        labelConvert.setForeground(new java.awt.Color(255, 255, 255));
         labelConvert.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelConvert.setText(Language.getResourceBundle().getString("Convert")); // NOI18N
 
@@ -142,15 +155,17 @@ public class MainWindow extends javax.swing.JFrame {
         panelTextConvert.setLayout(panelTextConvertLayout);
         panelTextConvertLayout.setHorizontalGroup(
             panelTextConvertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelConvert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(labelConvert, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
         );
         panelTextConvertLayout.setVerticalGroup(
             panelTextConvertLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(labelConvert, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
         );
 
-        panelTextTo.setBackground(new java.awt.Color(0, 255, 255));
+        panelTextTo.setBackground(new java.awt.Color(102, 102, 102));
 
+        labelTo.setBackground(new java.awt.Color(153, 153, 153));
+        labelTo.setForeground(new java.awt.Color(255, 255, 255));
         labelTo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTo.setText(Language.getResourceBundle().getString("To")); // NOI18N
 
@@ -167,6 +182,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelInsertNumber.setBackground(new java.awt.Color(0, 0, 255));
 
+        textFieldInsertNumber.setBackground(new java.awt.Color(204, 204, 204));
         textFieldInsertNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldInsertNumber.setText("0.0");
         textFieldInsertNumber.setToolTipText("Insert the number");
@@ -190,6 +206,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelConvertedNumber.setBackground(new java.awt.Color(51, 255, 0));
 
         textFieldConvertedNumber.setEditable(false);
+        textFieldConvertedNumber.setBackground(new java.awt.Color(204, 204, 204));
         textFieldConvertedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldConvertedNumber.setText("0.0");
         textFieldConvertedNumber.setToolTipText("Converted Number");
@@ -234,27 +251,30 @@ public class MainWindow extends javax.swing.JFrame {
         panelUserOption2.setLayout(panelUserOption2Layout);
         panelUserOption2Layout.setHorizontalGroup(
             panelUserOption2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(comboBoxExpected, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(comboBoxExpected, 0, 255, Short.MAX_VALUE)
         );
         panelUserOption2Layout.setVerticalGroup(
             panelUserOption2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(comboBoxExpected, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+        panelFooter.setBackground(new java.awt.Color(153, 153, 153));
 
         labelCounterClasses.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCounterClasses.setText("Gaveta Produções");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelCounterClasses, javax.swing.GroupLayout.DEFAULT_SIZE, 518, Short.MAX_VALUE)
+        javax.swing.GroupLayout panelFooterLayout = new javax.swing.GroupLayout(panelFooter);
+        panelFooter.setLayout(panelFooterLayout);
+        panelFooterLayout.setHorizontalGroup(
+            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFooterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(labelCounterClasses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(labelCounterClasses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+        panelFooterLayout.setVerticalGroup(
+            panelFooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(labelCounterClasses, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
@@ -262,21 +282,23 @@ public class MainWindow extends javax.swing.JFrame {
         panelContainerLayout.setHorizontalGroup(
             panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(panelContainerLayout.createSequentialGroup()
-                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panelUserOption, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelTextConvert, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelInsertNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelTextTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelConvertedNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelUserOption2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(panelFooter, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jSeparator2)
+                .addGroup(panelContainerLayout.createSequentialGroup()
+                    .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(panelUserOption, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelTextConvert, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelInsertNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(panelTextTo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelConvertedNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelUserOption2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         panelContainerLayout.setVerticalGroup(
             panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelContainerLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContainerLayout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,10 +313,22 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(panelUserOption, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panelUserOption2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelFooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         mFile.setText(Language.getResourceBundle().getString("File")); // NOI18N
+
+        menuItemSettings.setText(Language.getResourceBundle().getString("Settings")); // NOI18N
+        menuItemSettings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuItemSettingsActionPerformed(evt);
+            }
+        });
+        mFile.add(menuItemSettings);
+        mFile.add(jSeparator1);
 
         menuItemExit.setText(Language.getResourceBundle().getString("Exit")); // NOI18N
         menuItemExit.addActionListener(new java.awt.event.ActionListener() {
@@ -362,28 +396,26 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_menuItemExitActionPerformed
-    /**
-     * Altera o modelo da ComboBox de output de acordo com a categoria da
-     * unidade selecionada
-     *
-     * @param evt
-     */
-    private void comboBoxInputItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxInputItemStateChanged
+    
+    private void changeFolderDynamicClasses() {
+        String currentDirectory = System.getProperty("user.dir");
+        JFileChooser fileChooser = new JFileChooser(currentDirectory);
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fileChooser.setAcceptAllFileFilterUsed(false);        
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            this.controller.setPathToFolderString(fileChooser.getSelectedFile().getAbsolutePath());
+            this.controller.updateAllComboBox();
+        }
+    }
+    
+    public void updateInput()  {
         // Alterar apenas quando a categoria for diferente
         String currentCategory = getInputConverter().getCategory();
         if (!currentCategory.equals(this.categoryString)) {
             controller.updateComboBoxExpectedModel();
         }
         convertAndShow();
-    }//GEN-LAST:event_comboBoxInputItemStateChanged
-
-    private void inputUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inputUpdate
-        convertAndShow();
-    }//GEN-LAST:event_inputUpdate
-
-    private void comboBoxExpectedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxExpectedItemStateChanged
-        convertAndShow();
-    }//GEN-LAST:event_comboBoxExpectedItemStateChanged
+    }
 
     private void menuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemHelpActionPerformed
         new DialogMessages(this, true, "Help").setVisible(true);
@@ -394,6 +426,28 @@ public class MainWindow extends javax.swing.JFrame {
         Transferable transferable = new StringSelection(textFieldConvertedNumber.getText());
         clipboard.setContents(transferable, null);
     }//GEN-LAST:event_menuItemCopyActionPerformed
+
+    private void menuItemSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemSettingsActionPerformed
+        changeFolderDynamicClasses();
+    }//GEN-LAST:event_menuItemSettingsActionPerformed
+
+    private void comboBoxExpectedItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxExpectedItemStateChanged
+        convertAndShow();
+    }//GEN-LAST:event_comboBoxExpectedItemStateChanged
+
+    /**
+     * Altera o modelo da ComboBox de output de acordo com a categoria da
+     * unidade selecionada
+     *
+     * @param evt
+     */
+    private void comboBoxInputItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxInputItemStateChanged
+        updateInput();
+    }//GEN-LAST:event_comboBoxInputItemStateChanged
+
+    private void inputUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inputUpdate
+        convertAndShow();
+    }//GEN-LAST:event_inputUpdate
     
     private void convertAndShow() throws HeadlessException {
         String inputString = this.textFieldInsertNumber.getText();
@@ -505,7 +559,8 @@ public class MainWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboBoxExpected;
     private javax.swing.JComboBox<String> comboBoxInput;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel labelConvert;
     private javax.swing.JLabel labelCounterClasses;
     private javax.swing.JLabel labelHeader;
@@ -518,8 +573,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuItemCopy;
     private javax.swing.JMenuItem menuItemExit;
     private javax.swing.JMenuItem menuItemHelp;
+    private javax.swing.JMenuItem menuItemSettings;
     private javax.swing.JPanel panelContainer;
     private javax.swing.JPanel panelConvertedNumber;
+    private javax.swing.JPanel panelFooter;
     private javax.swing.JPanel panelHeader;
     private javax.swing.JPanel panelInsertNumber;
     private javax.swing.JPanel panelTextConvert;

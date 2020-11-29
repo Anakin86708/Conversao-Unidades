@@ -11,6 +11,18 @@
             </Property>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="menuItemSettings">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="Languages/language_en_US.properties" key="Settings" replaceFormat="Language.getResourceBundle().getString(&quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuItemSettingsActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuItemExit">
               <Properties>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
@@ -76,6 +88,9 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="99" green="99" red="99" type="rgb"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="menuBar"/>
@@ -108,30 +123,38 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="panelContainer">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="panelHeader" max="32767" attributes="0"/>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="panelUserOption" alignment="0" max="32767" attributes="0"/>
-                      <Component id="panelTextConvert" alignment="0" max="32767" attributes="0"/>
-                      <Component id="panelInsertNumber" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelTextTo" max="32767" attributes="0"/>
-                      <Component id="panelConvertedNumber" max="32767" attributes="0"/>
-                      <Component id="panelUserOption2" alignment="1" max="32767" attributes="0"/>
+              <Group type="103" alignment="1" groupAlignment="1" attributes="0">
+                  <Component id="panelFooter" alignment="0" max="32767" attributes="0"/>
+                  <Component id="jSeparator2" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="panelUserOption" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelTextConvert" alignment="0" max="32767" attributes="0"/>
+                          <Component id="panelInsertNumber" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="panelTextTo" max="32767" attributes="0"/>
+                          <Component id="panelConvertedNumber" max="32767" attributes="0"/>
+                          <Component id="panelUserOption2" alignment="1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
                   <Component id="panelHeader" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -149,13 +172,21 @@
                       <Component id="panelUserOption2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSeparator2" min="-2" pref="4" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="panelFooter" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="panelHeader">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+          </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -176,6 +207,9 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="labelHeader">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Unit: distances"/>
               </Properties>
@@ -185,14 +219,17 @@
         <Container class="javax.swing.JPanel" name="panelTextConvert">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="99" green="0" red="ff" type="rgb"/>
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
           </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelConvert" alignment="1" max="32767" attributes="0"/>
+                  <Component id="labelConvert" alignment="1" pref="257" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -204,6 +241,12 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="labelConvert">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="Languages/language_en_US.properties" key="Convert" replaceFormat="Language.getResourceBundle().getString(&quot;{key}&quot;)"/>
@@ -215,7 +258,7 @@
         <Container class="javax.swing.JPanel" name="panelTextTo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="0" type="rgb"/>
+              <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
           </Properties>
 
@@ -234,6 +277,12 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="labelTo">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="Languages/language_en_US.properties" key="To" replaceFormat="Language.getResourceBundle().getString(&quot;{key}&quot;)"/>
@@ -264,6 +313,9 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="textFieldInsertNumber">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="0.0"/>
                 <Property name="toolTipText" type="java.lang.String" value="Insert the number"/>
@@ -297,6 +349,9 @@
             <Component class="javax.swing.JTextField" name="textFieldConvertedNumber">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="cc" green="cc" red="cc" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="0.0"/>
                 <Property name="toolTipText" type="java.lang.String" value="Converted Number"/>
@@ -347,7 +402,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="comboBoxExpected" alignment="0" max="32767" attributes="0"/>
+                  <Component id="comboBoxExpected" alignment="0" pref="255" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -380,22 +435,28 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="jPanel1">
+        <Component class="javax.swing.JSeparator" name="jSeparator2">
+        </Component>
+        <Container class="javax.swing.JPanel" name="panelFooter">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="cc" green="ff" red="ff" type="rgb"/>
+              <Color blue="99" green="99" red="99" type="rgb"/>
             </Property>
           </Properties>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelCounterClasses" alignment="0" pref="518" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="labelCounterClasses" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="labelCounterClasses" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="labelCounterClasses" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
             </DimensionLayout>
           </Layout>

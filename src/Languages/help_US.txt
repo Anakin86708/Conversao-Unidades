@@ -1,1 +1,13 @@
+The purpose of this program it´s to realize measurement unit conversion by inserted values from user.
 
+In the main screen, user can insert in left field a numeric value that he wants to convert, and this value can not contain a negative sign(-). Besides that, user can select and copy the converted numeric value on right field.
+
+To choose the unit of measurement of the value to be converted, in the left field there is a list with available options, with mass, length and volume unit. After selecting this option, the right field will be updated with options restricted to unit type from first field.
+
+User can verify unit of measure type that was selected in the upper field of the screen.
+
+Menu options are described below:
+    • Open “File” tab and selecting “Exit” option: Application will be closed.
+    • Open “Edit” tab and selecting “Copy” option: Application will copy the converted value to transfer area of user.
+    • Open “Help” tab and selecting “Help” option: A new window will open containing essential informations to use the program.
+    • Open “Help” tab and selecting “About” option: A new window will open containing informations about program purpose.

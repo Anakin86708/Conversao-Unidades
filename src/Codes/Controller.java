@@ -85,7 +85,11 @@ public class Controller {
     }
 
     public Double convert(double value, AbstractConverter inputConverter, AbstractConverter expectedConverter) {
-        return expectedConverter.convert(inputConverter.toBase(value));
+        try {
+            return expectedConverter.convert(inputConverter.toBase(value));
+        } catch (Exception e) {
+            return 0.0;
+        }
     }
 
     @Override
@@ -112,8 +116,14 @@ public class Controller {
 
     public void updateComboBoxExpectedModel() {
         AbstractConverter interfaceConverter = mainWindow.getInputConverter();
-        String actualCategory = interfaceConverter.getCategory();
-        DefaultComboBoxModel outputModel = this.generateCobBoxModel(actualCategory);
+        DefaultComboBoxModel outputModel = null;
+        String actualCategory = null;
+        try {
+            actualCategory = interfaceConverter.getCategory();
+            outputModel = this.generateCobBoxModel(actualCategory);
+        } catch (NullPointerException nullPointerException) {
+            outputModel = new DefaultComboBoxModel();
+        }
         mainWindow.getComboBoxExpected().setModel(outputModel);
         mainWindow.changeUnit(actualCategory);
         mainWindow.changeClassesCounter();

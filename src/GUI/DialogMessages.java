@@ -24,7 +24,10 @@ public class DialogMessages extends javax.swing.JDialog {
     public DialogMessages(java.awt.Frame parent, boolean modal, String bundleString) {
         super(parent, modal);
         initComponents();
-        this.labelHeader.setText(Language.getResourceBundle().getString(bundleString));
+        
+        String name = Language.getResourceBundle().getString(bundleString);
+        this.setTitle(name);
+        this.labelHeader.setText(name);
         displayMessage(bundleString);
     }
 
