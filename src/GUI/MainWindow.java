@@ -6,11 +6,13 @@
 package GUI;
 
 import Codes.Controller;
+import Codes.Language;
 import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
@@ -41,6 +43,9 @@ public class MainWindow extends javax.swing.JFrame {
         updateComboBoxInputModel(this.controller.generateComboBoxModel());
         
         changeComboBoxExpectedModel();
+        
+        ResourceBundle languageBundle = Language.getResourceBundle();
+//        labelConvert.setText(languageBundle.getString("Convert"));
     }
     
     private InterfaceConverter getInputConverter() {
@@ -64,6 +69,8 @@ public class MainWindow extends javax.swing.JFrame {
         InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
         this.expectedConverter = interfaceConverter;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,14 +98,14 @@ public class MainWindow extends javax.swing.JFrame {
         comboBoxExpected = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         labelHeader1 = new javax.swing.JLabel();
-        mBar = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenuBar();
         mFile = new javax.swing.JMenu();
-        mItemExit = new javax.swing.JMenuItem();
+        menuItemExit = new javax.swing.JMenuItem();
         mEdit = new javax.swing.JMenu();
-        mItemCopy = new javax.swing.JMenuItem();
+        menuItemCopy = new javax.swing.JMenuItem();
         mHelp = new javax.swing.JMenu();
-        mItemHelp = new javax.swing.JMenuItem();
-        mItemAbout = new javax.swing.JMenuItem();
+        menuItemHelp = new javax.swing.JMenuItem();
+        menuItemAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -122,7 +129,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelTextConvert.setBackground(new java.awt.Color(255, 0, 153));
 
         labelConvert.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelConvert.setText("Convert from");
+        labelConvert.setText(Language.getResourceBundle().getString("Convert")); // NOI18N
 
         javax.swing.GroupLayout panelTextConvertLayout = new javax.swing.GroupLayout(panelTextConvert);
         panelTextConvert.setLayout(panelTextConvertLayout);
@@ -138,7 +145,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelTextTo.setBackground(new java.awt.Color(0, 255, 255));
 
         labelTo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        labelTo.setText("To");
+        labelTo.setText(Language.getResourceBundle().getString("To")); // NOI18N
 
         javax.swing.GroupLayout panelTextToLayout = new javax.swing.GroupLayout(panelTextTo);
         panelTextTo.setLayout(panelTextToLayout);
@@ -282,39 +289,39 @@ public class MainWindow extends javax.swing.JFrame {
 
         mFile.setText("File");
 
-        mItemExit.setText("Exit");
-        mItemExit.addActionListener(new java.awt.event.ActionListener() {
+        menuItemExit.setText("Exit");
+        menuItemExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mItemExitActionPerformed(evt);
+                menuItemExitActionPerformed(evt);
             }
         });
-        mFile.add(mItemExit);
+        mFile.add(menuItemExit);
 
-        mBar.add(mFile);
+        menuBar.add(mFile);
 
         mEdit.setText("Edit");
 
-        mItemCopy.setText("Copy");
-        mEdit.add(mItemCopy);
+        menuItemCopy.setText("Copy");
+        mEdit.add(menuItemCopy);
 
-        mBar.add(mEdit);
+        menuBar.add(mEdit);
 
         mHelp.setText("Help");
 
-        mItemHelp.setText("Help");
-        mHelp.add(mItemHelp);
+        menuItemHelp.setText("Help");
+        mHelp.add(menuItemHelp);
 
-        mItemAbout.setText("About");
-        mItemAbout.addActionListener(new java.awt.event.ActionListener() {
+        menuItemAbout.setText("About");
+        menuItemAbout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mItemAboutActionPerformed(evt);
+                menuItemAboutActionPerformed(evt);
             }
         });
-        mHelp.add(mItemAbout);
+        mHelp.add(menuItemAbout);
 
-        mBar.add(mHelp);
+        menuBar.add(mHelp);
 
-        setJMenuBar(mBar);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -330,14 +337,14 @@ public class MainWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemAboutActionPerformed
+    private void menuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAboutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_mItemAboutActionPerformed
+    }//GEN-LAST:event_menuItemAboutActionPerformed
 
-    private void mItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mItemExitActionPerformed
+    private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
         // TODO add your handling code here:
         System.exit(0);
-    }//GEN-LAST:event_mItemExitActionPerformed
+    }//GEN-LAST:event_menuItemExitActionPerformed
     
     /**
      * Altera o modelo da ComboBox de output de acordo com a categoria da unidade selecionada
@@ -417,7 +424,7 @@ public class MainWindow extends javax.swing.JFrame {
 
     private void changeUnit(String unit) {
         this.categoryString = unit;
-        labelHeader.setText("Unit: " + unit);
+        labelHeader.setText(Language.getResourceBundle().getString("Unit") + unit);
     }
     
     /**
@@ -466,14 +473,14 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel labelHeader;
     private javax.swing.JLabel labelHeader1;
     private javax.swing.JLabel labelTo;
-    private javax.swing.JMenuBar mBar;
     private javax.swing.JMenu mEdit;
     private javax.swing.JMenu mFile;
     private javax.swing.JMenu mHelp;
-    private javax.swing.JMenuItem mItemAbout;
-    private javax.swing.JMenuItem mItemCopy;
-    private javax.swing.JMenuItem mItemExit;
-    private javax.swing.JMenuItem mItemHelp;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem menuItemAbout;
+    private javax.swing.JMenuItem menuItemCopy;
+    private javax.swing.JMenuItem menuItemExit;
+    private javax.swing.JMenuItem menuItemHelp;
     private javax.swing.JPanel panelContainer;
     private javax.swing.JPanel panelConvertedNumber;
     private javax.swing.JPanel panelHeader;
@@ -485,4 +492,48 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTextField textFieldConvertedNumber;
     private javax.swing.JTextField textFieldInsertNumber;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JLabel getLabelConvert() {
+        return labelConvert;
+    }
+
+    public javax.swing.JLabel getLabelHeader() {
+        return labelHeader;
+    }
+
+    public javax.swing.JLabel getLabelHeader1() {
+        return labelHeader1;
+    }
+
+    public javax.swing.JLabel getLabelTo() {
+        return labelTo;
+    }
+
+    public javax.swing.JMenu getmEdit() {
+        return mEdit;
+    }
+
+    public javax.swing.JMenu getmFile() {
+        return mFile;
+    }
+
+    public javax.swing.JMenu getmHelp() {
+        return mHelp;
+    }
+
+    public javax.swing.JMenuItem getMenuItemAbout() {
+        return menuItemAbout;
+    }
+
+    public javax.swing.JMenuItem getMenuItemCopy() {
+        return menuItemCopy;
+    }
+
+    public javax.swing.JMenuItem getMenuItemExit() {
+        return menuItemExit;
+    }
+
+    public javax.swing.JMenuItem getMenuItemHelp() {
+        return menuItemHelp;
+    }
 }
