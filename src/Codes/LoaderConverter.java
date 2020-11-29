@@ -49,8 +49,8 @@ public class LoaderConverter {
             } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException  ex) {
                 Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NoSuchMethodException | InvocationTargetException ex) {
-                // Método não foi encontrado pois representa uma 
-                System.err.println("erro!");
+                // Método não foi encontrado pois representa uma classe abstrata
+                // Basta ignorar
             }
         }
     }
