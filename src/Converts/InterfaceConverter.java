@@ -11,29 +11,29 @@ package Converts;
  */
 
 /**
- * Teste de Javadoc
+ * Responsible for making the necessary interface for the conversion.
  * @author Leo
  */
 public interface InterfaceConverter {
 
     /**
-     * Retorna a categoria da medida.
-     * @return retorna a categoria
+     * Measure Category
+     * @return Measure Category
      */
     String getCategory();
     
    /**
-    * Recebe o input do usuário e o transforma para a medida base (m)
-    * @param input
-    * @return retorna o input em metros
+    * Receives user input and transforms it to the base measure (m)
+    * @param input User's input
+    * @return the input in meters
     */
     
     public double toBase(double input);
     
     /**
-     * Recebe um valor em metros, e o transforma para a medida escolhida.
-     * @param input
-     * @return Retorna o valor convertido para a unidade escolhida.
+     * It receives a value in meters, and transforms it to the chosen measure.
+     * @param input User's Input
+     * @return the converted value for the chosen unit.
      */
     
     public double convert(double input);
