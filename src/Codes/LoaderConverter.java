@@ -11,8 +11,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import Converts.InterfaceConverter;
 import java.util.List;
+import Converts.AbstractConverter;
+import java.util.Collections;
 
 /**
  *
@@ -20,15 +21,15 @@ import java.util.List;
  */
 public class LoaderConverter {
 
-    private List<InterfaceConverter> loadedObject;
+    private List<AbstractConverter> loadedObject;
 
     public LoaderConverter() {
 
     }
 
-    public InterfaceConverter[] getLoadedObject() {
+    public AbstractConverter[] getLoadedObject() {
         this.loader();
-        return loadedObject.toArray(new InterfaceConverter[0]);
+        return loadedObject.toArray(new AbstractConverter[0]);
     }
 
     /**
@@ -43,7 +44,7 @@ public class LoaderConverter {
             try {
                 String classString = classFile.getName().replace(".java", "");
                 Object o = Class.forName(packageString + "." + classString).getConstructor().newInstance();
-                InterfaceConverter converter = (InterfaceConverter) o;
+                AbstractConverter converter = (AbstractConverter) o;
                 addToLoaded(converter);
 
             } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
@@ -60,9 +61,9 @@ public class LoaderConverter {
      *
      * @param obj Objeto a ser comparado.
      */
-    private void addToLoaded(InterfaceConverter obj) {
+    private void addToLoaded(AbstractConverter obj) {
         String classString = obj.getClass().getName();
-        for (InterfaceConverter objDefault : this.loadedObject) {
+        for (AbstractConverter objDefault : this.loadedObject) {
             if (objDefault.getClass().getName().equals(classString)) {
                 return;  // Já está dentro do arrayList
             }

@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class DeciMeter implements InterfaceConverter {
-    private final String category;
-    
+public class DeciMeter extends AbstractConverter {
+
     public DeciMeter() {
-        this.category = "length";
-    }
-    
-    @Override
-    public String toString() {
-        return "Decimeters (dm)";
+        super("length");
     }
 
     @Override
-    public String getCategory() {
-        return this.category;
+    public String toString() {
+        return "Decimeters (dm)";
     }
 
     @Override

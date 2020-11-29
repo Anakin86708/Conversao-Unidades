@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class Feet implements InterfaceConverter {
-    private final String category;
+public class Feet extends AbstractConverter {
     
     public Feet() {
-        this.category = "length";
+        super("length");
     }
     
     @Override
     public String toString() {
         return "Feet (ft)";
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
     }
     
     @Override

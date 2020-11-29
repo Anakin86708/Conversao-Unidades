@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class DecaGram implements InterfaceConverter{
-    private final String category;
-    
+public class DecaGram extends AbstractConverter {
+
     public DecaGram() {
-        this.category = "mass";
-    }
-    
-    @Override
-    public String toString() {
-        return "Decagram (dag)";
+        super("mass");
     }
 
     @Override
-    public String getCategory() {
-        return this.category;
+    public String toString() {
+        return "Decagram (dag)";
     }
 
     @Override

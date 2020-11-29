@@ -9,22 +9,15 @@ package Converts;
  *
  * @author silva
  */
-public class Meters implements InterfaceConverter{
-    
-    private final String category;
+public class Meters extends AbstractConverter {
 
     public Meters() {
-        this.category = "length";
+        super("length");
     }
-    
+
     @Override
     public String toString() {
         return "Meters (m)";
-    }
-
-    @Override
-    public String getCategory() {
-        return this.category;
     }
 
     @Override

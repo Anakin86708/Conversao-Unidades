@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class HectoGram implements InterfaceConverter {
-    private final String category;
-    
+public class HectoGram extends AbstractConverter {
+
     public HectoGram() {
-        this.category = "mass";
-    }
-    
-    @Override
-    public String toString() {
-        return "Hectogram (hg)";
+        super("mass");
     }
 
     @Override
-    public String getCategory() {
-        return this.category;
+    public String toString() {
+        return "Hectogram (hg)";
     }
 
     @Override

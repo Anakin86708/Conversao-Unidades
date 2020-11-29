@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class DecaMeter implements InterfaceConverter {
-    private final String category;
-    
+public class DecaMeter extends AbstractConverter {
+
     public DecaMeter() {
-        this.category = "length";
-    }
-    
-    @Override
-    public String toString() {
-        return "Decameters (dam)";
+        super("length");
     }
 
     @Override
-    public String getCategory() {
-        return this.category;
+    public String toString() {
+        return "Decameters (dam)";
     }
 
     @Override

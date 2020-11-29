@@ -6,10 +6,10 @@
 package GUI;
 
 import Codes.Controller;
-import Converts.InterfaceConverter;
 import java.awt.HeadlessException;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import Converts.AbstractConverter;
 
 /**
  *
@@ -18,8 +18,8 @@ import javax.swing.JOptionPane;
 public class MainWindow extends javax.swing.JFrame {
     
     private Controller controller;
-    private InterfaceConverter inputConverter;
-    private InterfaceConverter expectedConverter;
+    private AbstractConverter inputConverter;
+    private AbstractConverter expectedConverter;
     private String categoryString;
 
     /**
@@ -36,25 +36,25 @@ public class MainWindow extends javax.swing.JFrame {
         controller.updateAllComboBox();
     }
     
-    public InterfaceConverter getInputConverter() {
+    public AbstractConverter getInputConverter() {
         setInputConverter();
         return this.inputConverter;
     }
     
     private void setInputConverter() {
         Object obj = comboBoxInput.getSelectedItem();
-        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.inputConverter = interfaceConverter;
     }
     
-    private InterfaceConverter getExpectedConverter() {
+    private AbstractConverter getExpectedConverter() {
         setExpectedConverter();
         return this.expectedConverter;
     }
     
     private void setExpectedConverter() {
         Object obj = comboBoxExpected.getSelectedItem();
-        InterfaceConverter interfaceConverter = (InterfaceConverter) obj;
+        AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.expectedConverter = interfaceConverter;
     }
     

@@ -11,11 +11,11 @@ package Converts;
  */
 
 // Transformation to Cubic Meters
-public class CubicMeters implements InterfaceConverter{
-    private final String category;
+public class CubicMeters extends AbstractConverter{
+    
     
     public CubicMeters() {
-        this.category = "volume";
+        super("volume");
     }
 
     @Override
@@ -31,14 +31,5 @@ public class CubicMeters implements InterfaceConverter{
     @Override
     public double convert(double input) {
         return input * 0.001;
-    }
-
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String getCategory() {
-        return this.category;
     }
 }

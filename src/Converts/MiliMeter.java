@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class MiliMeter implements InterfaceConverter {
-    private final String category;
-    
+public class MiliMeter extends AbstractConverter {
+
     public MiliMeter() {
-        this.category = "length";
-    }
-    
-    @Override
-    public String toString() {
-        return "Milimeters (mm)";
+        super("length");
     }
 
     @Override
-    public String getCategory() {
-        return this.category;
+    public String toString() {
+        return "Milimeters (mm)";
     }
 
     @Override

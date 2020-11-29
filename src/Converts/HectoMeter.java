@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class HectoMeter implements InterfaceConverter {
-    private final String category;
-    
+public class HectoMeter extends AbstractConverter {
+
     public HectoMeter() {
-        this.category = "length";
-    }
-    
-    @Override
-    public String toString() {
-        return "Hectometers (hm)";
+        super("length");
     }
 
     @Override
-    public String getCategory() {
-        return this.category;
+    public String toString() {
+        return "Hectometers (hm)";
     }
 
     @Override

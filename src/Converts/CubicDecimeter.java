@@ -9,25 +9,15 @@ package Converts;
  *
  * @author enzoj
  */
-public class CubicDecimeter implements InterfaceConverter{
-    private final String category;
+public class CubicDecimeter extends AbstractConverter{
 
     public CubicDecimeter() {
-        this.category = "volume";
+        super("volume");
     }
     
     @Override
     public String toString() {
         return "Cubic Decimeter (dm3)";
-    }
-    
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String getCategory() {
-        return this.category;
     }
 
     @Override

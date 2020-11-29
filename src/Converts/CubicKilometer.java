@@ -9,21 +9,16 @@ package Converts;
  *
  * @author enzoj
  */
-public class CubicKilometer implements InterfaceConverter {
-    public final String category;
+public class CubicKilometer extends AbstractConverter {
+    
 
     public CubicKilometer() {
-        this.category = "volume";
+        super("volume");
     }
     
     @Override
     public String toString() {
         return "Cubic Hectometer (hm3)";
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
     }
 
     @Override

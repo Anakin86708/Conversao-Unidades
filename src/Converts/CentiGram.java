@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class CentiGram implements InterfaceConverter {
-    private final String category;
+public class CentiGram extends AbstractConverter {
     
     public CentiGram(){
-        this.category = "mass";
+        super("mass");
     }
     
     @Override
     public String toString() {
         return "Centigram (dg)";
-    }
-
-    @Override
-    public String getCategory() {
-        return this.category;
     }
 
     @Override

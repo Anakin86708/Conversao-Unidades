@@ -9,21 +9,16 @@ package Converts;
  *
  * @author Leo
  */
-public class League implements InterfaceConverter{
-    private final String category;
-    
-    public League(){
-        this.category = "length";
+public class League extends AbstractConverter {
+
+    public League() {
+        super("length");
     }
 
     @Override
     public String toString() {
-        return "League (land)";  /* NAO TENHO CTZ DO SHORT, N SEI SE É LAND */
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
+        return "League (land)";
+        /* NAO TENHO CTZ DO SHORT, N SEI SE É LAND */
     }
 
     @Override
@@ -33,6 +28,6 @@ public class League implements InterfaceConverter{
 
     @Override
     public double convert(double input) {
-        return input * 0.000207124 ;
+        return input * 0.000207124;
     }
 }

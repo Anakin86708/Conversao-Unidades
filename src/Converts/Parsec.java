@@ -9,24 +9,15 @@ package Converts;
  *
  * @author Leo
  */
-public class Parsec implements InterfaceConverter{
-    
-    private final String category;
-    
-    public Parsec() 
-    {
-        this.category = "length";
+public class Parsec extends AbstractConverter {
+
+    public Parsec() {
+        super("length");
     }
-    
+
     @Override
     public String toString() {
-        return "Parsec (pc)"; 
-    }
-    
-    
-    @Override
-    public String getCategory() {
-        return this.category;
+        return "Parsec (pc)";
     }
 
     @Override

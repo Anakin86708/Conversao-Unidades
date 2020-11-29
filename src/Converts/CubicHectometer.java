@@ -9,25 +9,15 @@ package Converts;
  *
  * @author enzoj
  */
-public class CubicHectometer implements InterfaceConverter{
-    private final String category;
+public class CubicHectometer extends AbstractConverter{
     
     public CubicHectometer() {
-        this.category = "volume";
+        super("volume");
     }
 
     @Override
     public String toString() {
         return "Cubic Hectometer (hm3)";
-    }
-    
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String getCategory() {
-        return this.category;
     }
 
     @Override

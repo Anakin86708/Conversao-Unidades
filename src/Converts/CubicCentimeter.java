@@ -9,25 +9,15 @@ package Converts;
  *
  * @author enzoj
  */
-public class CubicCentimeter implements InterfaceConverter{
-    public final String category;
+public class CubicCentimeter extends AbstractConverter{
     
     public CubicCentimeter() {
-        this.category = "volume";
+        super("volume");
     }
     
     @Override
     public String toString() {
         return "Cubic Centimeter (cm3)";
-    }
-    
-    /**
-     *
-     * @return
-     */
-    @Override
-    public String getCategory() {
-        return this.category;
     }
 
     @Override

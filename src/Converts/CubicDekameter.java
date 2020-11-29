@@ -11,12 +11,10 @@ package Converts;
  */
 
 // transformation of Cubic dekameter by Tobase
-public class CubicDekameter implements InterfaceConverter{
-    
-    public final String category;
+public class CubicDekameter extends AbstractConverter{
     
     public CubicDekameter(){
-        this.category = "volume";
+        super("volume");
     }
     
     @Override
@@ -31,11 +29,6 @@ public class CubicDekameter implements InterfaceConverter{
     public double convert(double input) {
         // scientific notation
         return input * 1E-6;
-    }
-    
-    @Override
-    public String getCategory() {
-        return this.category;
     }
     
 }

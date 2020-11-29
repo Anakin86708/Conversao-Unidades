@@ -9,21 +9,15 @@ package Converts;
  *
  * @author Guiskater
  */
-public class Gram implements InterfaceConverter{
-    private final String category;
-    
+public class Gram extends AbstractConverter {
+
     public Gram() {
-        this.category = "mass";
-    }
-    
-    @Override
-    public String toString() {
-        return "Gram (g)";
+        super("mass");
     }
 
     @Override
-    public String getCategory() {
-        return this.category;
+    public String toString() {
+        return "Gram (g)";
     }
 
     @Override
