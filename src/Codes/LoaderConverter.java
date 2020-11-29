@@ -5,14 +5,16 @@
  */
 package Codes;
 
+import Converts.AbstractConverter;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.List;
-import Converts.AbstractConverter;
 
 /**
  *
@@ -24,12 +26,26 @@ public class LoaderConverter {
 
     public AbstractConverter[] getLoadedObject() {
         this.loader();
+        Collections.sort(loadedObject, new Comparator<AbstractConverter>() {
+            @Override
+            public int compare(AbstractConverter o1, AbstractConverter o2) {
+                int compare = o1.getCategory().compareTo(o2.getCategory());
+                System.out.println("Convert " + o1.getCategory() + " to " + o2.getCategory() + " = " + compare);
+
+                if (compare == 0) {
+                    // Belongs to the same category
+                    // Compare with toString
+                    compare = o1.toString().compareTo(o2.toString());
+                }
+                return compare;
+            }
+        });
         return loadedObject.toArray(new AbstractConverter[0]);
     }
 
     /**
-     * Responsable for loading all available classes for the first time 
-     * and all Objects into the arrayList.
+     * Responsable for loading all available classes for the first time and all
+     * Objects into the arrayList.
      */
     public void loader() {
         this.loadedObject = new ArrayList<>();
@@ -42,7 +58,7 @@ public class LoaderConverter {
                 AbstractConverter converter = (AbstractConverter) o;
                 addToLoaded(converter);
 
-            } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException  ex) {
+            } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException ex) {
                 Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
             } catch (NoSuchMethodException | InvocationTargetException ex) {
                 // Method was not found because it was a abstract class
@@ -52,8 +68,9 @@ public class LoaderConverter {
     }
 
     /**
-     * Place only one object per class inside the ArrayList,
-     * preventing duplicates.
+     * Place only one object per class inside the ArrayList, preventing
+     * duplicates.
+     *
      * @param obj Object to be compared.
      */
     private void addToLoaded(AbstractConverter obj) {
@@ -68,7 +85,8 @@ public class LoaderConverter {
     }
 
     /**
-     * Reads all .java files within a folder. 
+     * Reads all .java files within a folder.
+     *
      * @return Array of classes files to be loaded.
      */
     private File[] getFilesFromFolder() {
@@ -79,6 +97,7 @@ public class LoaderConverter {
 
     /**
      * Files filter
+     *
      * @param filterString Name that wish to be filtered.
      * @return boolean indicating if the file matches the filter.
      */

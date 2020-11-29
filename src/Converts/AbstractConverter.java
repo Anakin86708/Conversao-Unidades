@@ -47,7 +47,6 @@ public abstract class AbstractConverter {
     * @param input User's input
     * @return the input in meters
     */
-    
     abstract public double toBase(double input);
     
     /**
@@ -55,7 +54,6 @@ public abstract class AbstractConverter {
      * @param input User's Input
      * @return the converted value for the chosen unit.
      */
-    
     abstract public double convert(double input);
     
 }
