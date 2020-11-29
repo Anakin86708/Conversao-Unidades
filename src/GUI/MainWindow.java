@@ -125,6 +125,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelHeader.setBackground(new java.awt.Color(51, 51, 51));
 
+        labelHeader.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         labelHeader.setForeground(new java.awt.Color(255, 255, 255));
         labelHeader.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelHeader.setText("Unit: distances");
@@ -147,6 +148,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelTextConvert.setForeground(new java.awt.Color(255, 255, 255));
 
         labelConvert.setBackground(new java.awt.Color(153, 153, 153));
+        labelConvert.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelConvert.setForeground(new java.awt.Color(255, 255, 255));
         labelConvert.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelConvert.setText(Language.getResourceBundle().getString("Convert")); // NOI18N
@@ -165,6 +167,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelTextTo.setBackground(new java.awt.Color(102, 102, 102));
 
         labelTo.setBackground(new java.awt.Color(153, 153, 153));
+        labelTo.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         labelTo.setForeground(new java.awt.Color(255, 255, 255));
         labelTo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelTo.setText(Language.getResourceBundle().getString("To")); // NOI18N
@@ -183,6 +186,7 @@ public class MainWindow extends javax.swing.JFrame {
         panelInsertNumber.setBackground(new java.awt.Color(0, 0, 255));
 
         textFieldInsertNumber.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldInsertNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textFieldInsertNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldInsertNumber.setText("0.0");
         textFieldInsertNumber.setToolTipText("Insert the number");
@@ -207,6 +211,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         textFieldConvertedNumber.setEditable(false);
         textFieldConvertedNumber.setBackground(new java.awt.Color(204, 204, 204));
+        textFieldConvertedNumber.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textFieldConvertedNumber.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldConvertedNumber.setText("0.0");
         textFieldConvertedNumber.setToolTipText("Converted Number");
@@ -222,6 +227,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(textFieldConvertedNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
 
+        comboBoxInput.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         comboBoxInput.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mili", "Centi", "Deci", "Base", "Deca", "Hecto", "Kilo" }));
         comboBoxInput.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -240,6 +246,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addComponent(comboBoxInput, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
 
+        comboBoxExpected.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         comboBoxExpected.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mili", "Centi", "Deci", "Base", "Deca", "Hecto", "Kilo" }));
         comboBoxExpected.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -260,6 +267,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         panelFooter.setBackground(new java.awt.Color(153, 153, 153));
 
+        labelCounterClasses.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         labelCounterClasses.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelCounterClasses.setText("Gaveta Produções");
 
