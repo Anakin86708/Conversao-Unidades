@@ -18,7 +18,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Dynamic class load, instantiating its objects in the loadedObjects list
+ * 
  * @author silva
  */
 public class LoaderConverter {
@@ -70,6 +71,8 @@ public class LoaderConverter {
                 } catch (ClassNotFoundException ex) {
                     JOptionPane.showMessageDialog(null,"Error loading class: " + ex.getMessage());
                     return;
+                } catch (ClassCastException ex) {
+                    JOptionPane.showMessageDialog(null, "Invalid class: " + ex.getMessage());
                 }
             }
         }
@@ -99,7 +102,7 @@ public class LoaderConverter {
      */
     private File[] getFilesFromFolder() {
         File folder = new File(Controller.getPathToFolderString());
-        FilenameFilter filterName = generateFilenameFilter(".java");
+        FilenameFilter filterName = generateFileNameFilter(".java");
         return folder.listFiles(filterName);
     }
 
@@ -109,7 +112,7 @@ public class LoaderConverter {
      * @param filterString Name that wish to be filtered.
      * @return boolean indicating if the file matches the filter.
      */
-    private FilenameFilter generateFilenameFilter(String filterString) {
+    private FilenameFilter generateFileNameFilter(String filterString) {
         return new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {
