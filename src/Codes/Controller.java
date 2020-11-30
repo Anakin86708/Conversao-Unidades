@@ -54,11 +54,11 @@ public class Controller {
     
     public void restartWatchThread() {
         this.watcher.safeStop();
-        try {
-            this.watcherThread.join();
-        } catch (InterruptedException ex) {
-            System.err.println("Error while joining watch thread: " + ex.getMessage());
-        }
+//        try {
+//            this.watcherThread.join();
+//        } catch (InterruptedException ex) {
+//            System.err.println("Error while joining watch thread: " + ex.getMessage());
+//        }
         this.startWatchThread();
     }
 
