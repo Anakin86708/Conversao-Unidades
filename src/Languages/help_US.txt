@@ -1,5 +1,7 @@
 The purpose of this program it´s to realize measurement unit conversion by inserted values from user.
 
+FIRST, MAKE THE SELECTION OF THE DIRECTORY WHERE YOU WANT TO SEARCH FOR CLASSES THROUGH THE FILE MENU
+
 In the main screen, user can insert in left field a numeric value that he wants to convert, and this value can not contain a negative sign(-). Besides that, user can select and copy the converted numeric value on right field.
 
 To choose the unit of measurement of the value to be converted, in the left field there is a list with available options, with mass, length and volume unit. After selecting this option, the right field will be updated with options restricted to unit type from first field.

@@ -1,5 +1,7 @@
 O propósito desse programa é realizar a conversão de unidades de medida com valores inseridos pelo usuário. 
 
+PRIMEIRAMENTE, FAÇA A SELEÇÃO DO DIRETÓRIO ONDE DESEJA BUSCAR PELAS CLASSES PELO MENU FILE
+
 Na tela principal, o usuário pode inserir no campo à esquerda o valor numérico que deseja converter, sendo que esses valores não podem conter sinal negativo(-). Além disso, o usuário pode selecionar e copiar o valor numérico convertido no campo à direita.
 
 Para indicar a unidade de medida do valor a ser convertido, no campo à esquerda há uma lista com as opções disponíveis, com as unidades de massa, comprimento e volume. Ao selecionar essa opção, a lista à direita será atualizada com opções restringidas ao tipo de unidade do primeiro campo. 
