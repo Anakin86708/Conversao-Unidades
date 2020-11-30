@@ -42,8 +42,9 @@ public class MainWindow extends javax.swing.JFrame {
         this.setTitle("Conversor");
         this.languageBundle = Language.getResourceBundle();
 
-        String localDir = new File(System.getProperty("java.class.path")).getAbsolutePath();
-        String pathToFolderString = localDir + "/Converts";
+        String localDir = System.getProperty("user.dir");
+        String pathToFolderString = localDir + "/src/Converts";
+        System.out.println(""+pathToFolderString);
         this.controller = new Controller(this, pathToFolderString);
 
         // Cria o modelo com as classes carregadas
