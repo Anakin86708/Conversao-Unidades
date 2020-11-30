@@ -50,7 +50,9 @@ public class LoaderConverter {
      */
     public void loader() {
         this.loadedObject = new ArrayList<>();
-        String[] splitPath = Controller.getPathToFolderString().split("/");
+        String separator = System.getProperty("file.separator");
+        separator = separator.equals("\\") ? "(\\\\|\\/)": separator;
+        String[] splitPath = Controller.getPathToFolderString().split(separator);
         String packageString = splitPath[splitPath.length-1];
         File[] filesFromFolder = getFilesFromFolder();
         if (filesFromFolder != null) {

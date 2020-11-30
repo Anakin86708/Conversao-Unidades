@@ -28,7 +28,7 @@ public abstract class AbstractConverter {
      * @param name Name that will be shown in the GUI.
      */
     public AbstractConverter(String category, String name) {
-        this.category = Language.getResourceBundle().getString(category);;
+        this.category = Language.getResourceBundle().getString(category);
         this.name = Language.getResourceBundle().getString(name);
     }
     
