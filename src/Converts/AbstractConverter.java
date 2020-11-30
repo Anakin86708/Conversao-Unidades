@@ -8,11 +8,6 @@ package Converts;
 import Codes.Language;
 
 /**
- *
- * @author silva
- */
-
-/**
  * Responsible for making the necessary interface for the conversion.
  * @author Leo
  */
