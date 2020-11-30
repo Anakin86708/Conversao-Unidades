@@ -31,11 +31,9 @@ public class Controller {
      *
      * @return The path itself.
      */
-
     public static String getPathToFolderString() {
         return Controller.pathToFolderString;
     }
-
 
     /**
      * Sets the main window, the path to the folder and creates a new thread to
@@ -168,5 +166,18 @@ public class Controller {
         mainWindow.getComboBoxExpected().setModel(outputModel);
         mainWindow.changeUnit(actualCategory);
         mainWindow.changeClassesCounter();
+    }
+
+    /**
+     * Stops the monitoring over the classes.
+     */
+    @Override
+    protected void finalize() {
+        this.watcher.safeStop();
+        try {
+            this.watcherThread.join();
+        } catch (InterruptedException ex) {
+            System.err.println("Error: " + ex.getLocalizedMessage());
+        }
     }
 }
