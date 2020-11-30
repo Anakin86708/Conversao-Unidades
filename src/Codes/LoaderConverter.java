@@ -15,9 +15,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
- * 
+ *
  * @author silva
  */
 public class LoaderConverter {
@@ -49,20 +50,26 @@ public class LoaderConverter {
      */
     public void loader() {
         this.loadedObject = new ArrayList<>();
-        String packageString = "Converts";
+        String[] splitPath = Controller.getPathToFolderString().split("/");
+        String packageString = splitPath[splitPath.length-1];
         File[] filesFromFolder = getFilesFromFolder();
-        for (File classFile : filesFromFolder) {
-            try {
-                String classString = classFile.getName().replace(".java", "");
-                Object o = Class.forName(packageString + "." + classString).getConstructor().newInstance();
-                AbstractConverter converter = (AbstractConverter) o;
-                addToLoaded(converter);
+        if (filesFromFolder != null) {
+            for (File classFile : filesFromFolder) {
+                try {
+                    String classString = classFile.getName().replace(".java", "");
+                    Object o = Class.forName(packageString + "." + classString).getConstructor().newInstance();
+                    AbstractConverter converter = (AbstractConverter) o;
+                    addToLoaded(converter);
 
-            } catch (ClassNotFoundException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException ex) {
-                Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NoSuchMethodException | InvocationTargetException ex) {
-                // Method was not found because it was a abstract class
-                // Just ignore and continue exection
+                } catch (SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException ex) {
+                    Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (NoSuchMethodException | InvocationTargetException ex) {
+                    // Method was not found because it was a abstract class
+                    // Just ignore and continue exection
+                } catch (ClassNotFoundException ex) {
+                    JOptionPane.showMessageDialog(null,"Error loading class: " + ex.getMessage());
+                    return;
+                }
             }
         }
     }

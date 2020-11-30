@@ -42,7 +42,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.languageBundle = Language.getResourceBundle();
         
         String localDir = System.getProperty("user.dir");
-        String pathToFolderString = localDir + "\\src\\Converts";
+        String pathToFolderString = localDir + "/src/Converts";
         this.controller = new Controller(this, pathToFolderString);
 
         // Cria o modelo com as classes carregadas
@@ -397,7 +397,9 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemAboutActionPerformed
-        new DialogMessages(this, true, "About").setVisible(true);
+        DialogMessages dialogMessages = new DialogMessages(this, true, "About");
+        dialogMessages.setLocationRelativeTo(this);
+        dialogMessages.setVisible(true);
     }//GEN-LAST:event_menuItemAboutActionPerformed
 
     private void menuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemExitActionPerformed
@@ -428,7 +430,9 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void menuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemHelpActionPerformed
-        new DialogMessages(this, true, "Help").setVisible(true);
+        DialogMessages dialogMessages  = new DialogMessages(this, true, "Help");
+        dialogMessages.setLocationRelativeTo(this);
+        dialogMessages.setVisible(true);
     }//GEN-LAST:event_menuItemHelpActionPerformed
 
     private void menuItemCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemCopyActionPerformed

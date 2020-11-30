@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,10 +35,12 @@ public class DialogMessages extends javax.swing.JDialog {
     private void displayMessage(String bundleString) {
         try {
             String localDir = System.getProperty("user.dir");
-            String filename = localDir + "\\src\\" + Language.getResourceBundle().getString(bundleString+"_text");
+            String filename = localDir + "/src/" + Language.getResourceBundle().getString(bundleString+"_text");
             textArea.setText(readTextFromFile(filename));
         } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this, "Error opening file: " + ex.getLocalizedMessage());
             System.err.println("Error opening file: " + ex.getLocalizedMessage());
+            this.dispose();
         }
     }
 
