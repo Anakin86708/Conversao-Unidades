@@ -17,18 +17,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Will keep running as long as the program is executing, looking for changes
- * in the classes updating them.
+ * Will keep running as long as the program is executing, looking for changes in
+ * the classes updating them.
+ *
  * @author silva
  */
 public class FileWatcher implements Runnable {
 
     private volatile Boolean keepRunning;
     private WatchKey watchKey;
+    private WatchKey key;
     private final Controller asssociatedController;
 
     /**
      * Reports that the program is running, and associate a controller.
+     *
      * @param associatedController It is the object from the Controller class.
      */
     public FileWatcher(Controller associatedController) {
@@ -44,7 +47,7 @@ public class FileWatcher implements Runnable {
             Path path = FileSystems.getDefault().getPath(Controller.getPathToFolderString());
             WatchService watcher = FileSystems.getDefault().newWatchService();
             watchKey = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-            WatchKey key = watcher.take();
+            key = watcher.take();
 
             // Only continues when one of the above events is recorded
             if (keepRunning) {
@@ -71,7 +74,7 @@ public class FileWatcher implements Runnable {
             this.watcherClassChanges();
         }
     }
-    
+
     /**
      * Reloads the classe's path.
      */
