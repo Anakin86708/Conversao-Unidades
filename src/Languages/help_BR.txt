@@ -7,7 +7,8 @@ Para indicar a unidade de medida do valor a ser convertido, no campo à esquerda
 O usuário pode verificar o tipo de unidade de medida selecionada no campo superior da tela.
 
 As opções do menu são descritas abaixo:
-    • Ao abrir a aba “File” e selecionar a opção “Exit”: A aplicação será fechada
-    • Ao abrir a aba “Edit” e selecionar a opção “Copy”: A aplicação ira copiar o valor convertido para a área de transferência do usuário
-    • Ao abrir a aba “Help” e selecionar a opção “Help”: Uma nova janela será aberta contendo informações essenciais para uso do programa.
-    • Ao abrir a aba “Help” e selecionar a opção “About”: Uma nova janela será aberta contendo informações sobre o propósito do programa.
+    • Ao abrir a aba “Arquivo” e selecionar a opção “Alterar diretório de classes”: É possível alterar o diretório onde são procuradas as classes de conversão.
+    • Ao abrir a aba “Arquivo” e selecionar a opção “Sair”: A aplicação será fechada.
+    • Ao abrir a aba “Editar” e selecionar a opção “Copiar resultado”: A aplicação ira copiar o valor convertido para a área de transferência do usuário.
+    • Ao abrir a aba “Ajuda” e selecionar a opção “Ajuda”: Uma nova janela será aberta contendo informações essenciais para uso do programa.
+    • Ao abrir a aba “Ajuda” e selecionar a opção “Sobre”: Uma nova janela será aberta contendo informações sobre o propósito do programa.

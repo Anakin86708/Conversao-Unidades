@@ -7,7 +7,8 @@ To choose the unit of measurement of the value to be converted, in the left fiel
 User can verify unit of measure type that was selected in the upper field of the screen.
 
 Menu options are described below:
+    • Open “File” tab and selecting “Change classes folder” option: It is possible to change the directory where conversion classes are searched.
     • Open “File” tab and selecting “Exit” option: Application will be closed.
-    • Open “Edit” tab and selecting “Copy” option: Application will copy the converted value to transfer area of user.
+    • Open “Edit” tab and selecting “Copy result” option: Application will copy the converted value to transfer area of user.
     • Open “Help” tab and selecting “Help” option: A new window will open containing essential informations to use the program.
     • Open “Help” tab and selecting “About” option: A new window will open containing informations about program purpose.
