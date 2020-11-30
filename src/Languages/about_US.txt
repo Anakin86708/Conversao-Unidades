@@ -1,0 +1,6 @@
+This program was developed in order to accomplish a evaluation activity from Oriented Object Programming II (SI 400) subject, taught by professor André F. de Angelis.
+
+The program consists of a measurement unit conversion tool, encompassing mass, length and volume. This project was developed using a integrated tool from NetBeans to build GUIs.
+
+Final version.
+Group B-3.

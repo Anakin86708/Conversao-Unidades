@@ -1,0 +1,6 @@
+Esse programa foi desenvolvido a fim de cumprir uma atividade avaliativa da disciplina de Programação Orientada a Objetos II (SI 400), ministrada pelo professor André F. de Angelis.
+
+O programa consiste em uma ferramenta de conversão de unidade de medidas, englobando massa, comprimento e volume. Este projeto foi desenvolvido com uso da ferramenta integrada do NetBeans para construção de GUIs.
+
+Versão final.
+Grupo B-3.
