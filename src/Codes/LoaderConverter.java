@@ -18,7 +18,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Dynamic class load, instantiating its objects in the loadedObjects list
+ * 
  * @author silva
  */
 public class LoaderConverter {
