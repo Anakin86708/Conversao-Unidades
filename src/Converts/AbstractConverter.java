@@ -45,7 +45,7 @@ public abstract class AbstractConverter {
      * @return Unit name associated with the class.
      */
     public String toString() {
-        return this.name; 
+        return "[" + this.getCategory() + "] " + this.name;
     }
     
    /**
