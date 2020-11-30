@@ -17,8 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * https://docs.oracle.com/javase/tutorial/essential/io/notification.html
- *
+ * Will keep running as long as the program is executing, looking for changes
+ * in the classes updating them.
  * @author silva
  */
 public class FileWatcher implements Runnable {
@@ -27,13 +27,17 @@ public class FileWatcher implements Runnable {
     private WatchKey watchKey;
     private final Controller asssociatedController;
 
+    /**
+     * Reports that the program is running, and associate a controller.
+     * @param associatedController It is the object from the Controller class.
+     */
     public FileWatcher(Controller associatedController) {
         this.keepRunning = true;
         this.asssociatedController = associatedController;
     }
 
     /**
-     * Monitora o diretório em busca de alterações nas classes
+     * Watches the directory for changes to the classes.
      */
     private void watcherClassChanges() {
         try {
@@ -42,7 +46,7 @@ public class FileWatcher implements Runnable {
             watchKey = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
             WatchKey key = watcher.take();
 
-            // Apenas continua quando for registrado um dos eventos acima
+            // Only continues when one of the above events is recorded
             if (keepRunning) {
                 this.updateClasses();
             }
@@ -51,23 +55,36 @@ public class FileWatcher implements Runnable {
         }
     }
 
+    /**
+     * Updates the combo box.
+     */
     private void updateClasses() {
         this.asssociatedController.updateAllComboBox();
     }
 
+    /**
+     * Keep watching the directory as long as the programing is running.
+     */
     @Override
     public void run() {
         while (this.keepRunning) {
             this.watcherClassChanges();
         }
     }
-
+    
+    /**
+     * Reloads the classe's path.
+     */
     public void reload() {
         System.out.println("Reloaded path to classes");
         watchKey.cancel();
         updateClasses();
     }
 
+    /**
+     * Changes the keepRunning to false, so the program will stop watching the
+     * directory.
+     */
     public void safeStop() {
         this.keepRunning = false;
         reload();

@@ -6,8 +6,6 @@
 package Converts;
 
 /**
- * Responsible for creating the Mil Unit Class 
- * implementing the InterfaceConverter.
  * @author Guilherme
  */
 public class ThousandthOfAnInch extends AbstractConverter {

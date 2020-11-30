@@ -17,11 +17,11 @@ public class CubicHectometer extends AbstractConverter {
 
     @Override
     public double toBase(double input) {
-        return input * 1E+9; //To change body of generated methods, choose Tools | Templates.
+        return input * 1E+9; 
     }
 
     @Override
     public double convert(double input) {
-        return input * 1E-9; //To change body of generated methods, choose Tools | Templates.
+        return input * 1E-9; 
     }
 }

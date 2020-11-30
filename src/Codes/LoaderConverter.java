@@ -17,7 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * 
  * @author silva
  */
 public class LoaderConverter {
@@ -68,7 +68,7 @@ public class LoaderConverter {
     }
 
     /**
-     * Place only one object per class inside the ArrayList, preventing
+     * Put only one object per class inside the ArrayList, preventing
      * duplicates.
      *
      * @param obj Object to be compared.
@@ -80,7 +80,7 @@ public class LoaderConverter {
                 return;  // It´s already inside the arrayList   
             }
         }
-        // Otherwise, addd into arrayList 
+        // Otherwise, add into arrayList 
         this.loadedObject.add(obj);
     }
 

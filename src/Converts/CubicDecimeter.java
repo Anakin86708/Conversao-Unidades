@@ -17,12 +17,12 @@ public class CubicDecimeter extends AbstractConverter {
 
     @Override
     public double toBase(double input) {
-        return input * 1; //To change body of generated methods, choose Tools | Templates.
+        return input * 1; 
     }
 
     @Override
     public double convert(double input) {
-        return input * 1; //To change body of generated methods, choose Tools | Templates.
+        return input * 1; 
     }
 
 }

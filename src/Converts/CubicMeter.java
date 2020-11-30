@@ -9,7 +9,7 @@ package Converts;
  *
  * @author enzoj
  */
-// Transformation to Cubic Meters
+
 public class CubicMeter extends AbstractConverter {
 
     public CubicMeter() {

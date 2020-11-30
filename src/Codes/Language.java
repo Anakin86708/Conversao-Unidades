@@ -9,11 +9,16 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
- *
+ * Responsible for the language change.
  * @author silva
  */
 public class Language {
     
+    /**
+     * Gets the user's Resource Bundle.
+     * @return The right Resource Bundle, which will determinate the
+     * language.
+     */
     public static ResourceBundle getResourceBundle() {
         if (Locale.getDefault().getCountry().equals("BR"))
             return ResourceBundle.getBundle("Languages.language_pt_BR");

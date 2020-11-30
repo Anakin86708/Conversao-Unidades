@@ -15,7 +15,7 @@ import Converts.AbstractConverter;
 
 /**
  * Responsible for centralizing the logic of the program in relation 
- * to conversion and is responsible for creating combobo models.
+ * to conversion and is responsible for creating combo models.
  * @author silva
  */
 public class Controller {
@@ -27,13 +27,21 @@ public class Controller {
     private List<AbstractConverter> filtredList;
     private static String pathToFolderString;  // Deve ser o único local contendo a string
 
+    
+    /**
+     * Sets the main window, the path to the folder and creates a new
+     * thread to monitor the program.
+     * @param mainWindow Where the GUI will be running.
+     * @param pathToFolderString The path where the classes for the conversion
+     * are.
+     */
     public Controller(MainWindow mainWindow, String pathToFolderString) {
         this.mainWindow = mainWindow;
 
         Controller.pathToFolderString = pathToFolderString;
         this.loaderConverter = new LoaderConverter();
 
-        // Monitora pelo sistema de arquivos em outra thread
+        // Monitors through the file system on another thread
         this.watcher = new FileWatcher(this);
         this.watcherThread = new Thread(watcher);
         this.watcherThread.start();
@@ -48,19 +56,28 @@ public class Controller {
         return filtredList;
     }
 
+    /**
+     * Gets the path where the conversion classes are.
+     * @return The path itself.
+     */
+    
     public static String getPathToFolderString() {
         return Controller.pathToFolderString;
     }
 
+    /**
+     * Sets a new folder's path.
+     * @param pathToFolderString The previous folder's path.
+     */
     public void setPathToFolderString(String pathToFolderString) {
-        // Permite alteração da pasta, mas necessita alterar o watcher também
         Controller.pathToFolderString = pathToFolderString;
         this.watcher.reload();
     }
 
     /**
      * Responsable to create the Combo Box Model with the items. 
-     * @return the model with the items inside the Combo Box Model (options to choice).
+     * @return The model with the items inside the Combo Box Model 
+     * (options to choice).
      */
     public DefaultComboBoxModel generateComboBoxModel() {
         Object[] items = loaderConverter.getLoadedObject();
@@ -70,8 +87,8 @@ public class Controller {
     
     /**
      * Responsable for show the classes in the same category,
-     * @param filter define the category.
-     * @return the Combo Box Model with the Filter inside the Array.
+     * @param filter Define the category.
+     * @return The Combo Box Model with the Filter inside the Array.
      */
     public DefaultComboBoxModel generateCobBoxModel(String filter) {
         this.filtredList = new ArrayList<>();
@@ -84,6 +101,13 @@ public class Controller {
         return new DefaultComboBoxModel(filtredList.toArray());
     }
 
+    /**
+     * Converts the original value to the unit of measure's base.
+     * @param value Input from the user.
+     * @param inputConverter User's value converted.
+     * @param expectedConverter The expected value after the conversion.
+     * @return The converted value.
+     */
     public Double convert(double value, AbstractConverter inputConverter, AbstractConverter expectedConverter) {
         try {
             return expectedConverter.convert(inputConverter.toBase(value));
@@ -92,6 +116,9 @@ public class Controller {
         }
     }
 
+    /**
+     * Stops the monitoring over the classes.
+     */
     @Override
     protected void finalize() {
         this.watcher.safeStop();
@@ -102,18 +129,24 @@ public class Controller {
         }
     }
 
+    /**
+     * Updates all the combo boxes.
+     */
     public void updateAllComboBox() {
         this.updateComboBoxInputModel();
         this.updateComboBoxExpectedModel();
     }
 
     /**
-     * Atualiza a lista de unidades que podem ser selecionadas pelo usuário
+     * Updates the list of units that can be selected by the user.
      */
     public void updateComboBoxInputModel() {
         this.mainWindow.getComboBoxInput().setModel(this.generateComboBoxModel());
     }
 
+    /**
+     * Sets the category and the output value.
+     */
     public void updateComboBoxExpectedModel() {
         AbstractConverter interfaceConverter = mainWindow.getInputConverter();
         DefaultComboBoxModel outputModel = null;

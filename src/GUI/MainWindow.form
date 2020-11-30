@@ -133,21 +133,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="panelHeader" max="32767" attributes="0"/>
-              <Group type="103" alignment="1" groupAlignment="1" attributes="0">
-                  <Component id="panelFooter" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jSeparator2" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="panelUserOption" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelTextConvert" alignment="0" max="32767" attributes="0"/>
-                          <Component id="panelInsertNumber" alignment="0" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="panelTextTo" max="32767" attributes="0"/>
-                          <Component id="panelConvertedNumber" max="32767" attributes="0"/>
-                          <Component id="panelUserOption2" alignment="1" max="32767" attributes="0"/>
-                      </Group>
+              <Component id="panelFooter" alignment="0" max="32767" attributes="0"/>
+              <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" alignment="1" attributes="0">
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="panelUserOption" alignment="0" max="32767" attributes="0"/>
+                      <Component id="panelTextConvert" alignment="0" max="32767" attributes="0"/>
+                      <Component id="panelInsertNumber" alignment="0" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="panelTextTo" max="32767" attributes="0"/>
+                      <Component id="panelConvertedNumber" max="32767" attributes="0"/>
+                      <Component id="panelUserOption2" alignment="1" max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>

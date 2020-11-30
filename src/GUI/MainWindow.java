@@ -415,9 +415,11 @@ public class MainWindow extends javax.swing.JFrame {
             this.controller.updateAllComboBox();
         }
     }
-    
+    /**
+     * Updates the input.
+     */
     public void updateInput()  {
-        // Alterar apenas quando a categoria for diferente
+        //Change only when the category is different
         String currentCategory = getInputConverter().getCategory();
         if (!currentCategory.equals(this.categoryString)) {
             controller.updateComboBoxExpectedModel();
@@ -444,10 +446,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxExpectedItemStateChanged
 
     /**
-     * Altera o modelo da ComboBox de output de acordo com a categoria da
-     * unidade selecionada
+     * Changes the output ComboBox model according to the category of the 
+     * selected unit
      *
-     * @param evt
+     * @param evt 
      */
     private void comboBoxInputItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxInputItemStateChanged
         updateInput();

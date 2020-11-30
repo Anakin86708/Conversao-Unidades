@@ -9,7 +9,7 @@ package Converts;
  *
  * @author enzoj
  */
-// transformation of Cubic dekameter by Tobase
+
 public class CubicDekameter extends AbstractConverter {
 
     public CubicDekameter() {
