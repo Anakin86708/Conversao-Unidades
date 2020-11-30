@@ -41,11 +41,25 @@ public class Controller {
         Controller.pathToFolderString = pathToFolderString;
         this.loaderConverter = new LoaderConverter();
 
+        startWatchThread();
+    }
+
+    private void startWatchThread() {
         // Monitors through the file system on another thread
         this.watcher = new FileWatcher(this);
         this.watcherThread = new Thread(watcher);
         this.watcherThread.start();
         this.loaderConverter.loader();
+    }
+    
+    public void restartWatchThread() {
+        this.watcher.safeStop();
+        try {
+            this.watcherThread.join();
+        } catch (InterruptedException ex) {
+            System.err.println("Error while joining watch thread: " + ex.getMessage());
+        }
+        this.startWatchThread();
     }
 
     /**

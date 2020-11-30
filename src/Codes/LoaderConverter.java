@@ -31,7 +31,6 @@ public class LoaderConverter {
             @Override
             public int compare(AbstractConverter o1, AbstractConverter o2) {
                 int compare = o1.getCategory().compareTo(o2.getCategory());
-                System.out.println("Convert " + o1.getCategory() + " to " + o2.getCategory() + " = " + compare);
 
                 if (compare == 0) {
                     // Belongs to the same category
