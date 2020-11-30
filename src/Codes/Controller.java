@@ -157,7 +157,7 @@ public class Controller {
      */
     public void updateComboBoxExpectedModel() {
         AbstractConverter interfaceConverter = mainWindow.getInputConverter();
-        DefaultComboBoxModel outputModel = null;
+        DefaultComboBoxModel outputModel;
         String actualCategory = null;
         try {
             actualCategory = interfaceConverter.getCategory();

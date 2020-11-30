@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Dynamic class load, instantiating its objects in the loadedObjects list
- * 
+ *
  * @author silva
  */
 public class LoaderConverter {
@@ -69,7 +69,7 @@ public class LoaderConverter {
                     // Method was not found because it was a abstract class
                     // Just ignore and continue exection
                 } catch (ClassNotFoundException ex) {
-                    JOptionPane.showMessageDialog(null,"Error loading class: " + ex.getMessage());
+                    JOptionPane.showMessageDialog(null, "Error loading class: " + ex.getMessage());
                     return;
                 } catch (ClassCastException ex) {
                     JOptionPane.showMessageDialog(null, "Invalid class: " + ex.getMessage());

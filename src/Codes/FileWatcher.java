@@ -26,7 +26,6 @@ public class FileWatcher implements Runnable {
 
     private volatile Boolean keepRunning;
     private WatchKey watchKey;
-    private WatchKey key;
     private final Controller asssociatedController;
 
     /**
@@ -47,7 +46,7 @@ public class FileWatcher implements Runnable {
             Path path = FileSystems.getDefault().getPath(Controller.getPathToFolderString());
             WatchService watcher = FileSystems.getDefault().newWatchService();
             watchKey = path.register(watcher, ENTRY_CREATE, ENTRY_DELETE, ENTRY_MODIFY);
-            key = watcher.take();
+            WatchKey key = watcher.take();
 
             // Only continues when one of the above events is recorded
             if (keepRunning) {
