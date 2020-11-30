@@ -9,8 +9,6 @@ import javax.swing.DefaultComboBoxModel;
 import GUI.MainWindow;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import Converts.AbstractConverter;
 
 /**
@@ -21,10 +19,10 @@ import Converts.AbstractConverter;
  */
 public class Controller {
 
-    private MainWindow mainWindow;
+    private final MainWindow mainWindow;
     private Thread watcherThread;
     private FileWatcher watcher;
-    private LoaderConverter loaderConverter;
+    private final LoaderConverter loaderConverter;
     private List<AbstractConverter> filtredList;
     private static String pathToFolderString;  // Deve ser o único local contendo a string
 
@@ -136,19 +134,6 @@ public class Controller {
             return expectedConverter.convert(inputConverter.toBase(value));
         } catch (Exception e) {
             return 0.0;
-        }
-    }
-
-    /**
-     * Stops the monitoring over the classes.
-     */
-    @Override
-    protected void finalize() {
-        this.watcher.safeStop();
-        try {
-            this.watcherThread.join();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
