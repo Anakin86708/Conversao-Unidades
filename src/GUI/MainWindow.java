@@ -415,6 +415,7 @@ public class MainWindow extends javax.swing.JFrame {
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             this.controller.setPathToFolderString(fileChooser.getSelectedFile().getAbsolutePath());
             this.controller.updateAllComboBox();
+            this.controller.restartWatchThread();
         }
     }
     /**
