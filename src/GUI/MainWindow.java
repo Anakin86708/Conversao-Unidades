@@ -526,7 +526,7 @@ public class MainWindow extends javax.swing.JFrame {
         AbstractConverter interfaceConverter = getInputConverter();
         String actualCategory = interfaceConverter.getCategory();
         
-        DefaultComboBoxModel outputModel = this.controller.generateCobBoxModel(actualCategory);
+        DefaultComboBoxModel outputModel = this.controller.generateComboBoxModel(actualCategory);
         comboBoxExpected.setModel(outputModel);
         
         changeUnit(actualCategory);

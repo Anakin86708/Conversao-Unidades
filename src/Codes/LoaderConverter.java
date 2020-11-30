@@ -101,7 +101,7 @@ public class LoaderConverter {
      */
     private File[] getFilesFromFolder() {
         File folder = new File(Controller.getPathToFolderString());
-        FilenameFilter filterName = generateFilenameFilter(".java");
+        FilenameFilter filterName = generateFileNameFilter(".java");
         return folder.listFiles(filterName);
     }
 
@@ -111,7 +111,7 @@ public class LoaderConverter {
      * @param filterString Name that wish to be filtered.
      * @return boolean indicating if the file matches the filter.
      */
-    private FilenameFilter generateFilenameFilter(String filterString) {
+    private FilenameFilter generateFileNameFilter(String filterString) {
         return new FilenameFilter() {
             @Override
             public boolean accept(File dir, String name) {

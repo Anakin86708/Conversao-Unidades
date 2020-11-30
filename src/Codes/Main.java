@@ -8,11 +8,6 @@ package Codes;
 import GUI.MainWindow;
 
 /**
- *
- * @author silva
- */
-
-/**
  * The purpose of the "Main" class is to initialize the program.
  * @author enzoj
  */

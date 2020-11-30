@@ -19,13 +19,21 @@ import Converts.AbstractConverter;
  * @author silva
  */
 public class Controller {
+    private static String pathToFolderString;  // Deve ser o único local contendo a string
+    /**
+     * Gets the path where the conversion classes are.
+     * @return The path itself.
+     */
+    
+    public static String getPathToFolderString() {
+        return Controller.pathToFolderString;
+    }
 
     private MainWindow mainWindow;
     private Thread watcherThread;
     private FileWatcher watcher;
     private LoaderConverter loaderConverter;
     private List<AbstractConverter> filtredList;
-    private static String pathToFolderString;  // Deve ser o único local contendo a string
 
     
     /**
@@ -44,6 +52,9 @@ public class Controller {
         startWatchThread();
     }
 
+    /**
+     * Responsable to start a new thread for file watch
+     */
     private void startWatchThread() {
         // Monitors through the file system on another thread
         this.watcher = new FileWatcher(this);
@@ -52,13 +63,12 @@ public class Controller {
         this.loaderConverter.loader();
     }
     
+    
+    /**
+     * Stop the current thread and a start a new
+     */
     public void restartWatchThread() {
         this.watcher.safeStop();
-//        try {
-//            this.watcherThread.join();
-//        } catch (InterruptedException ex) {
-//            System.err.println("Error while joining watch thread: " + ex.getMessage());
-//        }
         this.startWatchThread();
     }
 
@@ -70,14 +80,6 @@ public class Controller {
         return filtredList;
     }
 
-    /**
-     * Gets the path where the conversion classes are.
-     * @return The path itself.
-     */
-    
-    public static String getPathToFolderString() {
-        return Controller.pathToFolderString;
-    }
 
     /**
      * Sets a new folder's path.
@@ -104,7 +106,7 @@ public class Controller {
      * @param filter Define the category.
      * @return The Combo Box Model with the Filter inside the Array.
      */
-    public DefaultComboBoxModel generateCobBoxModel(String filter) {
+    public DefaultComboBoxModel generateComboBoxModel(String filter) {
         this.filtredList = new ArrayList<>();
         for (AbstractConverter itemObject : loaderConverter.getLoadedObject()) {
             if (itemObject.getCategory().equals(filter)) {
@@ -167,7 +169,7 @@ public class Controller {
         String actualCategory = null;
         try {
             actualCategory = interfaceConverter.getCategory();
-            outputModel = this.generateCobBoxModel(actualCategory);
+            outputModel = this.generateComboBoxModel(actualCategory);
         } catch (NullPointerException nullPointerException) {
             outputModel = new DefaultComboBoxModel();
         }
