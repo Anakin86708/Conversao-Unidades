@@ -14,31 +14,35 @@ import java.util.logging.Logger;
 import Converts.AbstractConverter;
 
 /**
- * Responsible for centralizing the logic of the program in relation 
- * to conversion and is responsible for creating combo models.
+ * Responsible for centralizing the logic of the program in relation to
+ * conversion and is responsible for creating combo models.
+ *
  * @author silva
  */
 public class Controller {
-    private static String pathToFolderString;  // Deve ser o único local contendo a string
-    /**
-     * Gets the path where the conversion classes are.
-     * @return The path itself.
-     */
-    
-    public static String getPathToFolderString() {
-        return Controller.pathToFolderString;
-    }
 
     private MainWindow mainWindow;
     private Thread watcherThread;
     private FileWatcher watcher;
     private LoaderConverter loaderConverter;
     private List<AbstractConverter> filtredList;
+    private static String pathToFolderString;  // Deve ser o único local contendo a string
 
-    
     /**
-     * Sets the main window, the path to the folder and creates a new
-     * thread to monitor the program.
+     * Gets the path where the conversion classes are.
+     *
+     * @return The path itself.
+     */
+
+    public static String getPathToFolderString() {
+        return Controller.pathToFolderString;
+    }
+
+
+    /**
+     * Sets the main window, the path to the folder and creates a new thread to
+     * monitor the program.
+     *
      * @param mainWindow Where the GUI will be running.
      * @param pathToFolderString The path where the classes for the conversion
      * are.
@@ -62,8 +66,7 @@ public class Controller {
         this.watcherThread.start();
         this.loaderConverter.loader();
     }
-    
-    
+
     /**
      * Stop the current thread and a start a new
      */
@@ -74,15 +77,16 @@ public class Controller {
 
     /**
      * Responsable for Filtred List.
+     *
      * @return the Filtred List.
      */
     public List<AbstractConverter> getFiltredList() {
         return filtredList;
     }
 
-
     /**
      * Sets a new folder's path.
+     *
      * @param pathToFolderString The previous folder's path.
      */
     public void setPathToFolderString(String pathToFolderString) {
@@ -91,18 +95,20 @@ public class Controller {
     }
 
     /**
-     * Responsable to create the Combo Box Model with the items. 
-     * @return The model with the items inside the Combo Box Model 
-     * (options to choice).
+     * Responsable to create the Combo Box Model with the items.
+     *
+     * @return The model with the items inside the Combo Box Model (options to
+     * choice).
      */
     public DefaultComboBoxModel generateComboBoxModel() {
         Object[] items = loaderConverter.getLoadedObject();
         DefaultComboBoxModel model = new DefaultComboBoxModel(items);
         return model;
     }
-    
+
     /**
      * Responsable for show the classes in the same category,
+     *
      * @param filter Define the category.
      * @return The Combo Box Model with the Filter inside the Array.
      */
@@ -119,6 +125,7 @@ public class Controller {
 
     /**
      * Converts the original value to the unit of measure's base.
+     *
      * @param value Input from the user.
      * @param inputConverter User's value converted.
      * @param expectedConverter The expected value after the conversion.

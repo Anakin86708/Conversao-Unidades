@@ -26,12 +26,12 @@ import javax.swing.JOptionPane;
  * @author enzoj
  */
 public class MainWindow extends javax.swing.JFrame {
-    
-    private Controller controller;
+
+    private final Controller controller;
     private AbstractConverter inputConverter;
     private AbstractConverter expectedConverter;
     private String categoryString;
-    private ResourceBundle languageBundle;
+    private final ResourceBundle languageBundle;
 
     /**
      * Creates new form MainWindow
@@ -40,7 +40,7 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Conversor");
         this.languageBundle = Language.getResourceBundle();
-        
+
         String localDir = System.getProperty("user.dir");
         String pathToFolderString = localDir + "/src/Converts";
         this.controller = new Controller(this, pathToFolderString);
@@ -49,33 +49,33 @@ public class MainWindow extends javax.swing.JFrame {
         controller.updateAllComboBox();
 
     }
-    
+
     public AbstractConverter getInputConverter() {
         setInputConverter();
         return this.inputConverter;
     }
-    
+
     private void setInputConverter() {
         Object obj = comboBoxInput.getSelectedItem();
         AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.inputConverter = interfaceConverter;
     }
-    
+
     private AbstractConverter getExpectedConverter() {
         setExpectedConverter();
         return this.expectedConverter;
     }
-    
+
     private void setExpectedConverter() {
         Object obj = comboBoxExpected.getSelectedItem();
         AbstractConverter interfaceConverter = (AbstractConverter) obj;
         this.expectedConverter = interfaceConverter;
     }
-    
+
     public JComboBox<String> getComboBoxInput() {
         return comboBoxInput;
     }
-    
+
     public JComboBox<String> getComboBoxExpected() {
         return comboBoxExpected;
     }
@@ -406,22 +406,23 @@ public class MainWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_menuItemExitActionPerformed
-    
+
     private void changeFolderDynamicClasses() {
         String currentDirectory = System.getProperty("user.dir");
         JFileChooser fileChooser = new JFileChooser(currentDirectory);
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        fileChooser.setAcceptAllFileFilterUsed(false);        
+        fileChooser.setAcceptAllFileFilterUsed(false);
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             this.controller.setPathToFolderString(fileChooser.getSelectedFile().getAbsolutePath());
             this.controller.updateAllComboBox();
             this.controller.restartWatchThread();
         }
     }
+
     /**
      * Updates the input.
      */
-    public void updateInput()  {
+    public void updateInput() {
         //Change only when the category is different
         String currentCategory = getInputConverter().getCategory();
         if (!currentCategory.equals(this.categoryString)) {
@@ -431,7 +432,7 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     private void menuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemHelpActionPerformed
-        DialogMessages dialogMessages  = new DialogMessages(this, true, "Help");
+        DialogMessages dialogMessages = new DialogMessages(this, true, "Help");
         dialogMessages.setLocationRelativeTo(this);
         dialogMessages.setVisible(true);
     }//GEN-LAST:event_menuItemHelpActionPerformed
@@ -451,10 +452,10 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_comboBoxExpectedItemStateChanged
 
     /**
-     * Changes the output ComboBox model according to the category of the 
+     * Changes the output ComboBox model according to the category of the
      * selected unit
      *
-     * @param evt 
+     * @param evt
      */
     private void comboBoxInputItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxInputItemStateChanged
         updateInput();
@@ -463,7 +464,7 @@ public class MainWindow extends javax.swing.JFrame {
     private void inputUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_inputUpdate
         convertAndShow();
     }//GEN-LAST:event_inputUpdate
-    
+
     private void convertAndShow() throws HeadlessException {
         String inputString = this.textFieldInsertNumber.getText();
         try {
@@ -480,55 +481,52 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void setConverted(Double value) {
         double doubleValue = value;
-        
+
         // Para 10^7
         // Transformação para int do value e consegue a quantidade de numeros antes do "."
-        int intValue = (int)doubleValue;
+        int intValue = (int) doubleValue;
         int tamanhoValue = String.valueOf(intValue).length();
-        
+
         // Para 10^-7
         // Transformação para String do value e consegue a quantidade de numeros depois do "."
         String StringNumPequeno = String.valueOf(value);
         int indexPequeno = StringNumPequeno.indexOf(".");
         int tamanhoDecimal = StringNumPequeno.substring(indexPequeno + 1).length();
-        
+
         // Arredondamento do value
         long NumeroArredondado = Math.round(value);
-        
+
         // Verifica se o value é 10^7 ou 10^-7 
-        if(tamanhoValue > 7 || tamanhoDecimal > 7) {
+        if (tamanhoValue > 7 || tamanhoDecimal > 7) {
             DecimalFormat df = new DecimalFormat("0.#E0");
             this.textFieldConvertedNumber.setText(df.format(value));
-        }
-        else {
+        } else {
             //this.textFieldConvertedNumber.setText(Long.toString(NumeroArredondado));
             this.textFieldConvertedNumber.setText(Double.toString(doubleValue));
         }
     }
-    
 
-    private int countDecimalPlaces(Double value){
+    private int countDecimalPlaces(Double value) {
         DecimalFormatSymbols decimalSeparator = new DecimalFormatSymbols();
-        
+
         String valueString = Double.toString(Math.abs(value));
 //        int indexDotPlace = valueString.indexOf(decimalSeparator.getDecimalSeparator());
         int indexDotPlace = valueString.indexOf('.');
         int numberOfDecimals = valueString.length() - indexDotPlace - 1;
-        
+
         return numberOfDecimals;
     }
-    
 
     private void changeComboBoxExpectedModel() {
         AbstractConverter interfaceConverter = getInputConverter();
         String actualCategory = interfaceConverter.getCategory();
-        
+
         DefaultComboBoxModel outputModel = this.controller.generateComboBoxModel(actualCategory);
         comboBoxExpected.setModel(outputModel);
-        
+
         changeUnit(actualCategory);
     }
 
@@ -536,7 +534,7 @@ public class MainWindow extends javax.swing.JFrame {
         this.categoryString = unit;
         labelHeader.setText(this.languageBundle.getString("Unit") + unit);
     }
-    
+
     public void changeClassesCounter() {
         int count = this.comboBoxInput.getItemCount();
         this.labelCounterClasses.setText(this.languageBundle.getString("Number_classes") + count);
