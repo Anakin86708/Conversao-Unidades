@@ -52,8 +52,10 @@ public class LoaderConverter {
         this.loadedObject = new ArrayList<>();
         String separator = System.getProperty("file.separator");
         separator = separator.equals("\\") ? "(\\\\|\\/)": separator;
+        
         String[] splitPath = Controller.getPathToFolderString().split(separator);
         String packageString = splitPath[splitPath.length-1];
+        JOptionPane.showMessageDialog(null, Controller.getPathToFolderString());
         File[] filesFromFolder = getFilesFromFolder();
         if (filesFromFolder != null) {
             for (File classFile : filesFromFolder) {
@@ -65,6 +67,7 @@ public class LoaderConverter {
 
                 } catch (SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException ex) {
                     Logger.getLogger(LoaderConverter.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex.getLocalizedMessage());
                 } catch (NoSuchMethodException | InvocationTargetException ex) {
                     // Method was not found because it was a abstract class
                     // Just ignore and continue exection

@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
+import java.io.File;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ResourceBundle;
@@ -41,8 +42,8 @@ public class MainWindow extends javax.swing.JFrame {
         this.setTitle("Conversor");
         this.languageBundle = Language.getResourceBundle();
 
-        String localDir = System.getProperty("user.dir");
-        String pathToFolderString = localDir + "/src/Converts";
+        String localDir = new File(System.getProperty("java.class.path")).getAbsolutePath();
+        String pathToFolderString = localDir + "/Converts";
         this.controller = new Controller(this, pathToFolderString);
 
         // Cria o modelo com as classes carregadas
@@ -416,6 +417,7 @@ public class MainWindow extends javax.swing.JFrame {
             this.controller.setPathToFolderString(fileChooser.getSelectedFile().getAbsolutePath());
             this.controller.updateAllComboBox();
             this.controller.restartWatchThread();
+            JOptionPane.showMessageDialog(this, "Ok!");
         }
     }
 
