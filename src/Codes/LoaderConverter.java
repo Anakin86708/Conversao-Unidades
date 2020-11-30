@@ -55,7 +55,7 @@ public class LoaderConverter {
         
         String[] splitPath = Controller.getPathToFolderString().split(separator);
         String packageString = splitPath[splitPath.length-1];
-        JOptionPane.showMessageDialog(null, Controller.getPathToFolderString());
+
         File[] filesFromFolder = getFilesFromFolder();
         if (filesFromFolder != null) {
             for (File classFile : filesFromFolder) {

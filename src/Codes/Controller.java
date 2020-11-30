@@ -169,4 +169,19 @@ public class Controller {
         mainWindow.changeUnit(actualCategory);
         mainWindow.changeClassesCounter();
     }
+    
+        /**
+     * Stops the monitoring over the classes.
+     */
+    @Override
+    protected void finalize() {
+        this.watcher.safeStop();
+        try {
+            this.watcherThread.join();
+        } catch (InterruptedException ex) {
+            System.err.println("Error: " + ex.getLocalizedMessage());
+        }
+    }
+
+
 }
